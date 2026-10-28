@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회계·세무 대시보드</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto; padding: 24px; max-width: 1100px;
+  background: #fbfbfa; color: #1c1c1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+  font-size: 13px; line-height: 1.5;
+}
+h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.2px; }
+.sub { color: #6b6b66; font-size: 12px; margin-bottom: 8px; }
+.mode { font-size: 11.5px; margin-bottom: 22px; }
+.mode b { font-weight: 600; }
+.dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+.dot-snap { background:#8b6fd8; } .dot-live { background:#3d9140; }
+section { margin-bottom: 32px; }
+h2 { font-size: 14px; margin: 0 0 3px; display: flex; align-items: center; gap: 8px; }
+.note { color: #6b6b66; font-size: 11.5px; margin: 0 0 10px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e4e4e0; }
+th { background: #f3f3f0; text-align: left; font-weight: 600; font-size: 11.5px;
+     color: #4a4a45; padding: 7px 9px; border-bottom: 1px solid #e4e4e0; white-space: nowrap; }
+td { padding: 7px 9px; border-bottom: 1px solid #f0f0ec; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafaf8; }
+td.date { font-variant-numeric: tabular-nums; white-space: nowrap; color: #4a4a45; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+a { color: #1a5490; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10.5px;
+         font-weight: 600; white-space: nowrap; }
+.b-future { background: #fdf0d5; color: #8a5a00; }
+.b-now    { background: #e8f0e8; color: #3d6b3d; }
+.b-warn   { background: #fbe4e4; color: #9b2c2c; }
+.b-soon   { background: #fdf0d5; color: #8a5a00; }
+.b-sample { background: #ece7f8; color: #5b3fa8; }
+.tag-sample { background:#ece7f8; color:#5b3fa8; padding:1px 7px; border-radius:3px; font-size:10.5px; font-weight:600; }
+.tabs { display: flex; gap: 5px; margin-bottom: 9px; flex-wrap: wrap; }
+.tab { padding: 4px 11px; border: 1px solid #dcdcd6; background: #fff; border-radius: 5px;
+       cursor: pointer; font-size: 12px; color: #4a4a45; }
+.tab:hover { background: #f5f5f2; }
+.tab.on { background: #1c1c1a; color: #fff; border-color: #1c1c1a; }
+.title-cell { max-width: 640px; }
+.foot { color: #8a8a84; font-size: 11px; border-top: 1px solid #e4e4e0; padding-top: 12px; margin-top: 8px; }
+.foot code { background:#f0f0ec; padding:1px 4px; border-radius:3px; }
+</style>
+</head>
+<body>
+
+<h1>회계·세무 대시보드</h1>
+<div class="sub" id="stamp"></div>
+<div class="mode" id="mode"></div>
+
+<section>
+  <h2>1. 세법 개정 레이더</h2>
+  <p class="note">주요 세법·외감법의 현행 시행일과 시행예정 개정. 시행일이 오늘 이후면 <b>시행예정</b>으로 표시됩니다.</p>
+  <table>
+    <thead><tr>
+      <th style="width:26%">법령명</th><th style="width:11%">구분</th>
+      <th style="width:12%">공포일</th><th style="width:12%">시행일</th>
+      <th style="width:11%">상태</th><th>비고</th>
+    </tr></thead>
+    <tbody id="law-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>2. 최신 예규·판례 피드 <span class="tag-sample">스냅샷</span></h2>
+  <p class="note">국세청 법령해석 + 조세심판원 재결례. 주제를 눌러 전환하세요. 국세청 건은 제목 클릭 시 원문으로 이동합니다.</p>
+  <div class="tabs" id="tabs"></div>
+  <table>
+    <thead><tr>
+      <th style="width:11%">일자</th><th style="width:13%">출처</th>
+      <th style="width:16%">안건/청구번호</th><th>제목</th>
+    </tr></thead>
+    <tbody id="dec-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>3. 신고·납부 마감 캘린더 <span class="tag-sample">샘플 데이터</span></h2>
+  <p class="note"><b>주의:</b> 아래는 일반 법정기한을 임의로 채운 <b>샘플</b>입니다. 실제 담당 건이 아니며, 담당 법인·기한으로 교체해 사용하세요.</p>
+  <table>
+    <thead><tr>
+      <th style="width:11%">기한</th><th style="width:9%">D-day</th>
+      <th style="width:24%">항목</th><th style="width:16%">대상</th>
+      <th style="width:11%">담당</th><th>상태</th>
+    </tr></thead>
+    <tbody id="cal-body"></tbody>
+  </table>
+</section>
+
+<div class="foot">
+  데이터 출처: 법제처 국가법령정보(법령·국세청 해석례·조세심판원 재결례) · 3번 표는 샘플 ·
+  스냅샷 기준일 <b>2026-10-28</b>. 실시간 갱신을 켜려면 아래 스크립트의 <code>LAW_OC</code> 값에 본인 OpenAPI 인증키(OC)를 넣으세요.
+</div>
+
+<script>
+/* =========================================================================
+   실시간 갱신(선택):
+   법제처 OpenAPI 인증키(OC)를 아래 LAW_OC 에 넣으면, 1번 "세법 개정 레이더"가
+   페이지를 열 때 law.go.kr 을 직접 호출해 최신 시행일로 갱신을 시도합니다.
+   - 호출이 실패하면(브라우저 CORS 차단 등) 자동으로 내장 스냅샷을 표시합니다.
+   - 공개 저장소에 올리면 이 키가 그대로 노출되니, 노출을 원치 않으면 비워 두세요.
+   2번 예규·판례는 다른 사이트(taxlaw.nts.go.kr 등)라 정적 페이지에서는 스냅샷으로만 제공됩니다.
+   ========================================================================= */
+const LAW_OC = "";   // 예: "본인OC키"  (비워 두면 스냅샷만 사용)
+
+const SNAPSHOT_DATE = "2026-10-28";
+const TODAY = new Date();
+const pad = n => String(n).padStart(2,'0');
+const ymd = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const TODAY_NUM = Number(TODAY.getFullYear()+pad(TODAY.getMonth()+1)+pad(TODAY.getDate()));
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmtD = s => !s ? '' : (String(s).length===8 ? s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8) : s);
+
+document.getElementById('stamp').textContent = ymd(TODAY)+' 접속 · 스냅샷 기준 '+SNAPSHOT_DATE;
+
+/* ---------- 1. 세법 개정 레이더 (스냅샷) ---------- */
+const LAW_SNAPSHOT = [
+  {name:'법인세법', gubun:'법률', pub:'20251223', eff:'20260701', note:''},
+  {name:'법인세법 시행령', gubun:'대통령령', pub:'20260227', eff:'20260227', note:''},
+  {name:'법인세법 시행규칙', gubun:'재정경제부령', pub:'20260701', eff:'20260701', note:''},
+  {name:'법인세법', gubun:'개정예정', pub:'20201222', eff:'20270101', note:'일부개정 — 시행예정본'},
+  {name:'법인세법', gubun:'개정예정', pub:'20101230', eff:'20280101', note:'일부개정 — 시행예정본'},
+  {name:'소득세법', gubun:'법률', pub:'20251223', eff:'20260701', note:''},
+  {name:'소득세법 시행령', gubun:'대통령령', pub:'20260930', eff:'20261001', note:''},
+  {name:'소득세법 시행규칙', gubun:'재정경제부령', pub:'20260522', eff:'20260701', note:''},
+  {name:'소득세법 시행령', gubun:'개정예정', pub:'20260227', eff:'20270101', note:'일부개정 — 시행예정본'},
+  {name:'부가가치세법', gubun:'법률', pub:'20251001', eff:'20260102', note:''},
+  {name:'부가가치세법 시행령', gubun:'대통령령', pub:'20260227', eff:'20260401', note:''},
+  {name:'부가가치세법 시행규칙', gubun:'재정경제부령', pub:'20260320', eff:'20260401', note:''},
+  {name:'조세특례제한법', gubun:'법률', pub:'20260317', eff:'20260918', note:''},
+  {name:'조세특례제한법 시행령', gubun:'대통령령', pub:'20260818', eff:'20260918', note:''},
+  {name:'조세특례제한법 시행규칙', gubun:'기후에너지환경부령', pub:'20260831', eff:'20260918', note:''},
+  {name:'조세특례제한법', gubun:'개정예정', pub:'20251223', eff:'20270101', note:'일부개정 — 시행예정본'},
+  {name:'국세기본법', gubun:'법률', pub:'20260929', eff:'20261002', note:''},
+  {name:'국세기본법 시행령', gubun:'대통령령', pub:'20260227', eff:'20260701', note:''},
+  {name:'국세기본법 시행규칙', gubun:'재정경제부령', pub:'20260320', eff:'20260320', note:''},
+  {name:'국세기본법', gubun:'개정예정', pub:'20251223', eff:'20280101', note:'일부개정 — 시행예정본'},
+  {name:'주식회사 등의 외부감사에 관한 법률', gubun:'법률', pub:'20250401', eff:'20250401', note:''},
+  {name:'주식회사 등의 외부감사에 관한 법률 시행령', gubun:'대통령령', pub:'20260526', eff:'20260526', note:''},
+  {name:'주식회사 등의 외부감사에 관한 법률 시행규칙', gubun:'총리령', pub:'20191217', eff:'20191217', note:''}
+];
+
+function renderLaws(rows, live) {
+  rows = rows.slice().sort((a,b)=>Number(b.eff||0)-Number(a.eff||0));
+  document.getElementById('law-body').innerHTML = rows.map(r=>{
+    const n = Number(String(r.eff).replace(/-/g,'')||0);
+    const badge = n>TODAY_NUM ? '<span class="badge b-future">시행예정</span>'
+                              : '<span class="badge b-now">현행</span>';
+    return '<tr><td>'+esc(r.name)+'</td><td>'+esc(r.gubun)+'</td>'+
+      '<td class="date">'+fmtD(r.pub)+'</td><td class="date">'+fmtD(r.eff)+'</td>'+
+      '<td>'+badge+'</td><td>'+esc(r.note)+'</td></tr>';
+  }).join('');
+  const m = document.getElementById('mode');
+  m.innerHTML = live
+    ? '<span class="dot dot-live"></span><b>1번 레이더: 실시간</b> (law.go.kr 직접 호출 성공) · 2·3번은 스냅샷/샘플'
+    : '<span class="dot dot-snap"></span><b>1번 레이더: 스냅샷</b> ('+SNAPSHOT_DATE+' 기준) · 2번 스냅샷 · 3번 샘플';
+}
+
+async function tryLiveLaws() {
+  if (!LAW_OC) { renderLaws(LAW_SNAPSHOT, false); return; }
+  const names = ['법인세법','소득세법','부가가치세법','조세특례제한법','국세기본법','주식회사 등의 외부감사에 관한 법률'];
+  const rows = [];
+  try {
+    for (const q of names) {
+      const url = 'https://www.law.go.kr/DRF/lawSearch.do?OC='+encodeURIComponent(LAW_OC)+
+                  '&target=law&type=JSON&display=5&query='+encodeURIComponent(q);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      const j = await res.json();
+      const list = (j.LawSearch && j.LawSearch.law) ? [].concat(j.LawSearch.law) : [];
+      for (const it of list) {
+        rows.push({
+          name: it.법령명한글 || q,
+          gubun: it.법령구분명 || '',
+          pub: (it.공포일자||'').replace(/-/g,''),
+          eff: (it.시행일자||'').replace(/-/g,''),
+          note: ''
+        });
+      }
+    }
+    if (!rows.length) throw new Error('empty');
+    renderLaws(rows, true);
+  } catch (e) {
+    renderLaws(LAW_SNAPSHOT, false);  // CORS 등 실패 → 스냅샷
+  }
+}
+
+/* ---------- 2. 예규·판례 (스냅샷) ---------- */
+const NTS = u => 'https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId='+u;
+const DEC = {
+'법인세':[
+ {d:'2026-08-11',s:'국세청 해석',no:'사전-2026-법규국조-0733',t:'여신전문금융회사가 외국금융기관에 지급하는 외화채무 이자가 법인세 면제 대상인지',l:NTS('200000000000022694')},
+ {d:'2026-07-07',s:'조세심판원',no:'조심 2025인4460',t:'불균등유상증자로 계열사로부터 이익 분여받은 것으로 보아 부당행위계산부인 적용한 처분의 당부',l:''},
+ {d:'2026-06-30',s:'조세심판원',no:'조심 2026서1721',t:'가공거래로 본 체납법인 법인세가 위법하여 제2차 납세의무 지정·고지도 위법한지',l:''},
+ {d:'2026-06-24',s:'조세심판원',no:'조심 2026중0065',t:'장애인고용부담금이 법인세법 제21조 손금불산입 공과금인지 등',l:''},
+ {d:'2026-06-22',s:'국세청 해석',no:'서면-2026-법인-1038',t:'물적분할에 따라 분할법인이 취득한 주식의 취득가액 산정방법',l:NTS('200000000000023736')},
+ {d:'2026-06-22',s:'국세청 해석',no:'서면-2026-법인-0773',t:'계약파기로 정상가격 판매 불가능한 제조설비의 감액손실 인식 가능 여부',l:NTS('200000000000023740')},
+ {d:'2026-06-02',s:'국세청 해석',no:'서면-2026-법인-0391',t:'특수관계인간 불공정 합병 시 쌍방 주식 보유 법인주주에 부당행위계산부인 적용 여부',l:NTS('200000000000023759')},
+ {d:'2026-06-02',s:'국세청 해석',no:'서면-2026-법인-2602',t:'금융업 주업 법인의 성실신고확인서 제출 대상 해당 여부',l:NTS('200000000000023739')}
+],
+'부가가치세':[
+ {d:'2026-09-28',s:'조세심판원',no:'조심 2026서1235',t:'항공기 좌석 사전 매수 후 판매 거래가 외국항행용역 영세율 대상인지',l:''},
+ {d:'2026-09-23',s:'조세심판원',no:'조심 2026서1147',t:'특수관계법인 간 거래를 가공거래로 보아 부가가치세 과세한 처분의 당부',l:''},
+ {d:'2026-09-15',s:'조세심판원',no:'조심 2026광1246',t:'쟁점 교육용역이 부가가치세 면제대상이라는 청구주장의 당부',l:''},
+ {d:'2026-06-24',s:'국세청 해석',no:'질의회신',t:'국내 재화 수출 외국법인이 수입부가세 부담 시 내국법인 매입세액공제 가능 여부',l:NTS('200000000000022048')},
+ {d:'2026-06-24',s:'국세청 해석',no:'질의회신',t:'거래 단계별 세금계산서 발급·수취 여부',l:NTS('200000000000021657')},
+ {d:'2026-06-22',s:'국세청 해석',no:'질의회신',t:'상시 주거용 임대 오피스텔 양도 시 부가가치세 발생 여부',l:NTS('200000000000021579')},
+ {d:'2026-06-16',s:'국세청 해석',no:'질의회신',t:'구청이 옥외 전자게시대 기부채납 받고 무상사용 허용 시 부가세 과세대상 여부',l:NTS('200000000000021641')}
+],
+'소득세':[
+ {d:'2026-10-01',s:'조세심판원',no:'조심 2026방0604',t:'종합소득세 부과가 위법하므로 이를 근거로 한 개인지방소득세 부과도 위법한지',l:''},
+ {d:'2026-09-30',s:'조세심판원',no:'조심 2026서2802',t:'쟁점소득이 국내 제공 용역 대가로 국외원천소득 아니라며 외국납부세액공제 부인한 처분의 당부',l:''},
+ {d:'2026-09-30',s:'조세심판원',no:'조심 2026구2512',t:'쟁점급여를 가공급여로 보아 필요경비 부인하고 종합소득세 부과한 처분의 당부',l:''},
+ {d:'2026-08-06',s:'국세청 해석',no:'서면-2025-소득-0471',t:'고용증대세액공제 적용 시 상속으로 고용 승계한 경우 추가공제 가능 여부',l:NTS('200000000000023140')},
+ {d:'2026-07-23',s:'국세청 해석',no:'서면-2026-소득-2516',t:'성실신고확인비용 세액공제 적용 시 이월된 세액이 있을 경우',l:NTS('200000000000022778')},
+ {d:'2026-07-23',s:'국세청 해석',no:'서면-2026-소득-1951',t:'통합투자세액공제 추가공제 적용 시 3년간 연평균 투자금액 계산 방법',l:NTS('200000000000022475')},
+ {d:'2026-07-13',s:'국세청 해석',no:'서면-2026-소득-1665',t:'신탁계약 통해 불특정 다수로부터 자기주식 취득 후 소각 시 의제배당 여부',l:NTS('200000000000023228')}
+],
+'감가상각':[
+ {d:'2025-12-29',s:'국세청 해석',no:'서면-2024-법규법인-4127',t:'적격인적분할 시 존속 분할법인의 업무용승용차 처분손실·감가상각비 이월액 세무처리',l:NTS('200000000000017341')},
+ {d:'2025-12-16',s:'국세청 해석',no:'서면-2025-법인-2531',t:'완전자회사 합병 시 발생한 영업권 감가상각 가능 여부',l:NTS('200000000000016648')},
+ {d:'2025-10-21',s:'국세청 해석',no:'서면-2022-법규소득-5281',t:'개인사업자 공동사업 전환 시 평가 영업권의 감가상각자산 가액 및 기타소득 과세범위',l:NTS('200000000000015353')},
+ {d:'2025-10-17',s:'국세청 해석',no:'서면-2024-법인-4504',t:'볼링장 레인설비의 감가상각 기준내용연수 적용방법',l:NTS('200000000000017745')},
+ {d:'2025-05-13',s:'국세청 해석',no:'서면-2023-법규소득-0950',t:'감가상각자산 내용연수 신고 가능한 "새로 사업을 개시하는 사업자"의 의미',l:NTS('200000000000012348')},
+ {d:'2024-10-29',s:'국세청 해석',no:'서면-2024-법인-1298',t:'K-IFRS 적용 법인의 감가상각비 신고조정 특례 적용 가능 여부',l:NTS('200000000000008083')}
+],
+'기업업무추진비':[
+ {d:'2025-05-30',s:'국세청 해석',no:'서면-2025-소득-1613',t:'도소매업과 인적용역 수입이 함께 있는 경우 기업업무추진비 기본한도',l:NTS('200000000000012545')},
+ {d:'2025-04-17',s:'국세청 해석',no:'사전-2025-법규소득-0245',t:'면세로 사업자등록한 인적용역사업자의 기업업무추진비 기본한도금액 산정',l:NTS('200000000000011924')},
+ {d:'2025-04-11',s:'국세청 해석',no:'서면-2024-소득-4452',t:'조특법 §6① 요건 충족 인적용역사업자의 기업업무추진비 기본한도',l:NTS('200000000000012132')},
+ {d:'2024-06-13',s:'국세청 해석',no:'사전-2024-법규법인-0352',t:'사업연도 중 특수관계 소멸 시 기업업무추진비 손금산입 한도액 계산방법',l:NTS('200000000000005414')},
+ {d:'2023-12-27',s:'국세청 해석',no:'사전-2023-법규법인-0639',t:'기업업무추진비 수입금액별 한도 계산 시 수입보증료의 산정기준',l:NTS('200000000000002416')}
+],
+'대손금':[
+ {d:'2025-07-23',s:'국세청 해석',no:'서면-2025-법인-0868',t:'미회수 채권금액을 대손금으로 손금산입할 수 있는지 여부',l:NTS('200000000000015035')},
+ {d:'2025-07-23',s:'국세청 해석',no:'서면-2025-법인-0697',t:'채권의 출자전환 후 무상소각되는 경우 대손금 손금산입 여부',l:NTS('200000000000015040')},
+ {d:'2025-04-17',s:'국세청 해석',no:'사전-2025-법규법인-0019',t:'해외 채무자에 대한 손해배상채권의 대손금 해당여부',l:NTS('200000000000012279')},
+ {d:'2025-03-05',s:'국세청 해석',no:'사전-2024-법규법인-1038',t:'대손요건 미비로 손금불산입 후 대손사유 발생 시 대손금의 손금 귀속시기',l:NTS('200000000000011727')},
+ {d:'2024-12-31',s:'국세청 해석',no:'서면-2024-법인-3273',t:'해외채권을 대손금으로 손금산입 할 수 있는지 여부',l:NTS('200000000000011079')},
+ {d:'2024-11-18',s:'국세청 해석',no:'사전-2024-법규법인-0548',t:'파산에 따른 대손금의 손금 귀속시기',l:NTS('200000000000007432')}
+]
+};
+const TOPICS = Object.keys(DEC);
+let current = (function(){ try { return localStorage.getItem('dash_topic') || TOPICS[0]; } catch(e){ return TOPICS[0]; } })();
+if (!DEC[current]) current = TOPICS[0];
+
+function renderDecisions(topic) {
+  const rows = (DEC[topic]||[]).slice().sort((a,b)=>(b.d||'').localeCompare(a.d||''));
+  document.getElementById('dec-body').innerHTML = rows.map(r=>{
+    const t = r.l ? '<a href="'+esc(r.l)+'" target="_blank" rel="noopener">'+esc(r.t)+'</a>' : esc(r.t);
+    return '<tr><td class="date">'+esc(r.d)+'</td><td>'+esc(r.s)+'</td>'+
+      '<td>'+esc(r.no)+'</td><td class="title-cell">'+t+'</td></tr>';
+  }).join('');
+}
+function renderTabs() {
+  const el = document.getElementById('tabs');
+  el.innerHTML = TOPICS.map(t=>'<button class="tab'+(t===current?' on':'')+'" data-t="'+esc(t)+'">'+esc(t)+'</button>').join('');
+  el.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+    current=b.dataset.t;
+    try { localStorage.setItem('dash_topic', current); } catch(e){}
+    renderTabs(); renderDecisions(current);
+  });
+}
+
+/* ---------- 3. 마감 캘린더 (샘플) ---------- */
+const SAMPLE = [
+  ['2026-11-10','원천세 신고·납부 (10월분)','전 사업장','본인','미착수'],
+  ['2026-11-11','부가가치세 예정신고·납부','법인 전체','본인','진행중'],
+  ['2026-12-10','일용근로소득 지급명세서','A법인','팀원','미착수'],
+  ['2026-12-31','법인세 세무조정 자료 정리','12월 결산법인','본인','미착수'],
+  ['2027-01-25','부가가치세 확정신고·납부','법인 전체','본인','미착수']
+];
+function renderCal() {
+  const t0 = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+  const rows = SAMPLE.slice().sort((a,b)=>a[0].localeCompare(b[0]));
+  document.getElementById('cal-body').innerHTML = rows.map(r=>{
+    const d = new Date(r[0]+'T00:00:00');
+    const dd = Math.round((d-t0)/86400000);
+    const label = dd===0?'D-DAY':(dd>0?'D-'+dd:'D+'+(-dd));
+    const cls = dd<0?'b-warn':(dd<=10?'b-soon':'b-now');
+    return '<tr><td class="date">'+r[0]+'</td>'+
+      '<td class="num"><span class="badge '+cls+'">'+label+'</span></td>'+
+      '<td>'+esc(r[2])+'</td><td>'+esc(r[3])+'</td><td>'+esc(r[4])+'</td>'+
+      '<td>'+esc(r[4])+' <span class="badge b-sample">샘플</span></td></tr>';
+  }).join('');
+}
+
+renderCal();
+renderTabs();
+renderDecisions(current);
+tryLiveLaws();
+</script>
+</body>
+</html>
