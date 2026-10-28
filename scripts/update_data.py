@@ -285,11 +285,14 @@ def claude_summarize(items):
         '출력은 JSON 객체 하나만: {"<id>": {"summary": "...", "impact": "...", "rel": "상", "area": "..."}, ...}\n\n'
         + "\n".join(lines)
     )
-    payload = json.dumps({
+    body = {
         "model": MODEL,
-        "max_tokens": 4000,
+        "max_tokens": 16000,
         "messages": [{"role": "user", "content": prompt}],
-    }).encode("utf-8")
+    }
+    if "haiku-5" in MODEL:   # Haiku 5.x는 기본으로 사고(thinking)부터 해서 출력 한도를 소진 — 단순 요약이라 끔
+        body["thinking"] = {"type": "disabled"}
+    payload = json.dumps(body).encode("utf-8")
     res = http_json("https://api.anthropic.com/v1/messages", data=payload, timeout=120, headers={
         "x-api-key": API_KEY,
         "anthropic-version": "2023-06-01",
@@ -297,7 +300,11 @@ def claude_summarize(items):
     })
     text = "".join(b.get("text", "") for b in res.get("content", []) if b.get("type") == "text")
     m = re.search(r"\{.*\}", text, re.S)
-    return json.loads(m.group(0)) if m else {}
+    if not m:
+        raise RuntimeError(f"JSON 응답 없음 (stop_reason={res.get('stop_reason')})")
+    got = json.loads(m.group(0))
+    # 모델이 키를 "id=nts-123"처럼 돌려주는 경우도 받아줌
+    return {re.sub(r"^id=", "", k).strip(): v for k, v in got.items() if isinstance(v, dict)}
 
 
 def add_summaries(feed):
@@ -315,15 +322,20 @@ def add_summaries(feed):
         for it in todo:
             if it["id"].startswith("tt-"):
                 it["gist"] = tribunal_gist(it["id"])
-        for i in range(0, len(todo), 25):       # 25건씩 묶어서 호출 (비용 절감)
-            batch = todo[i:i + 25]
+        for i in range(0, len(todo), 15):       # 15건씩 묶어서 호출 (비용 절감)
+            batch = todo[i:i + 15]
             try:
                 got = claude_summarize(batch)
+                hit = 0
                 for it in batch:
                     if it["id"] in got:
                         cache[it["id"]] = {**got[it["id"]], "at": TODAY.isoformat(), "model": MODEL, "v": PROMPT_V}
+                        hit += 1
+                if not hit:
+                    raise RuntimeError("응답 id가 요청 id와 불일치: " + ", ".join(list(got)[:3]))
             except Exception as e:
                 note = f"AI 요약 일부 실패: {e}"[:120]
+                print(f"[claude] {note}")
         print(f"[claude] 새 요약 대상 {len(todo)}건, 캐시 {len(cache)}건")
     for rows in feed.values():
         for r in rows:
