@@ -4,12 +4,12 @@
  "model": "",
  "aiNote": "ANTHROPIC_API_KEY 없음 — AI 요약 생략",
  "topics": [
-  "법인세",
-  "부가가치세",
-  "소득세",
-  "감가상각",
-  "접대비",
-  "대손금"
+  "세액공제·감면",
+  "감가상각·자산평가",
+  "부가세·세금계산서",
+  "국제조세·이전가격",
+  "손금·익금 쟁점",
+  "조직재편·자본거래"
  ],
  "laws": [
   {
@@ -19,7 +19,8 @@
    "pub": "2026-03-20",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=284993&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=284993&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "세율·손금·익금 → 법인세비용, 이연법인세 재측정"
   },
   {
    "name": "법인세법 시행령",
@@ -28,7 +29,8 @@
    "pub": "2026-02-27",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283635&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283635&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "세율·손금·익금 → 법인세비용, 이연법인세 재측정"
   },
   {
    "name": "소득세법",
@@ -37,7 +39,8 @@
    "pub": "2025-12-23",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280405&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280405&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "소득세법 시행규칙",
@@ -46,7 +49,8 @@
    "pub": "2024-12-31",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=267943&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=267943&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "소득세법 시행령",
@@ -55,7 +59,8 @@
    "pub": "2026-02-27",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283631&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283631&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "조세특례제한법",
@@ -64,7 +69,8 @@
    "pub": "2025-12-23",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280409&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280409&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "조세특례제한법 시행령",
@@ -73,7 +79,8 @@
    "pub": "2026-02-27",
    "eff": "2027-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283625&type=HTML&mobileYn=&efYd=20270101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=283625&type=HTML&mobileYn=&efYd=20270101",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "조세특례제한법",
@@ -82,7 +89,8 @@
    "pub": "2026-09-15",
    "eff": "2027-03-16",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289553&type=HTML&mobileYn=&efYd=20270316"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289553&type=HTML&mobileYn=&efYd=20270316",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "조세특례제한법",
@@ -91,7 +99,8 @@
    "pub": "2026-06-16",
    "eff": "2027-06-17",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=286937&type=HTML&mobileYn=&efYd=20270617"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=286937&type=HTML&mobileYn=&efYd=20270617",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "소득세법",
@@ -100,7 +109,8 @@
    "pub": "2026-09-08",
    "eff": "2027-09-09",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289363&type=HTML&mobileYn=&efYd=20270909"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289363&type=HTML&mobileYn=&efYd=20270909",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "조세특례제한법",
@@ -109,7 +119,8 @@
    "pub": "2026-09-08",
    "eff": "2027-09-09",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289379&type=HTML&mobileYn=&efYd=20270909"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=289379&type=HTML&mobileYn=&efYd=20270909",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "소득세법",
@@ -118,7 +129,8 @@
    "pub": "2024-12-31",
    "eff": "2028-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=267581&type=HTML&mobileYn=&efYd=20280101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=267581&type=HTML&mobileYn=&efYd=20280101",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "소득세법 시행령",
@@ -127,7 +139,8 @@
    "pub": "2025-02-28",
    "eff": "2028-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=269541&type=HTML&mobileYn=&efYd=20280101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=269541&type=HTML&mobileYn=&efYd=20280101",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "국세기본법",
@@ -136,7 +149,8 @@
    "pub": "2025-12-23",
    "eff": "2028-01-01",
    "status": "시행예정",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280373&type=HTML&mobileYn=&efYd=20280101"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=eflaw&MST=280373&type=HTML&mobileYn=&efYd=20280101",
+   "focus": "경정청구·가산세·제척기간, 세무조사"
   },
   {
    "name": "국세기본법",
@@ -145,7 +159,8 @@
    "pub": "2026-09-29",
    "eff": "2026-10-02",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=289999&type=HTML&mobileYn=&efYd=20261002"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=289999&type=HTML&mobileYn=&efYd=20261002",
+   "focus": "경정청구·가산세·제척기간, 세무조사"
   },
   {
    "name": "법인세법 시행령",
@@ -154,7 +169,8 @@
    "pub": "2026-09-30",
    "eff": "2026-10-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=290843&type=HTML&mobileYn=&efYd=20261001"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=290843&type=HTML&mobileYn=&efYd=20261001",
+   "focus": "세율·손금·익금 → 법인세비용, 이연법인세 재측정"
   },
   {
    "name": "소득세법 시행령",
@@ -163,7 +179,8 @@
    "pub": "2026-09-30",
    "eff": "2026-10-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=290841&type=HTML&mobileYn=&efYd=20261001"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=290841&type=HTML&mobileYn=&efYd=20261001",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "조세특례제한법",
@@ -172,7 +189,8 @@
    "pub": "2026-03-17",
    "eff": "2026-09-18",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284389&type=HTML&mobileYn=&efYd=20260918"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284389&type=HTML&mobileYn=&efYd=20260918",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "조세특례제한법 시행령",
@@ -181,7 +199,8 @@
    "pub": "2026-08-18",
    "eff": "2026-09-18",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=288915&type=HTML&mobileYn=&efYd=20260918"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=288915&type=HTML&mobileYn=&efYd=20260918",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "조세특례제한법 시행규칙",
@@ -190,7 +209,8 @@
    "pub": "2026-08-31",
    "eff": "2026-09-18",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=289267&type=HTML&mobileYn=&efYd=20260918"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=289267&type=HTML&mobileYn=&efYd=20260918",
+   "focus": "R&D·통합투자·통합고용 세액공제, 최저한세"
   },
   {
    "name": "법인세법",
@@ -199,7 +219,8 @@
    "pub": "2025-12-23",
    "eff": "2026-07-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=280349&type=HTML&mobileYn=&efYd=20260701"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=280349&type=HTML&mobileYn=&efYd=20260701",
+   "focus": "세율·손금·익금 → 법인세비용, 이연법인세 재측정"
   },
   {
    "name": "법인세법 시행규칙",
@@ -208,7 +229,8 @@
    "pub": "2026-07-01",
    "eff": "2026-07-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=287787&type=HTML&mobileYn=&efYd=20260701"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=287787&type=HTML&mobileYn=&efYd=20260701",
+   "focus": "세율·손금·익금 → 법인세비용, 이연법인세 재측정"
   },
   {
    "name": "소득세법",
@@ -217,7 +239,8 @@
    "pub": "2025-12-23",
    "eff": "2026-07-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=280405&type=HTML&mobileYn=&efYd=20260701"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=280405&type=HTML&mobileYn=&efYd=20260701",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "소득세법 시행규칙",
@@ -226,7 +249,8 @@
    "pub": "2026-05-22",
    "eff": "2026-07-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=286379&type=HTML&mobileYn=&efYd=20260701"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=286379&type=HTML&mobileYn=&efYd=20260701",
+   "focus": "임직원 원천징수·연말정산, 지급명세서"
   },
   {
    "name": "국세기본법 시행령",
@@ -235,7 +259,8 @@
    "pub": "2026-02-27",
    "eff": "2026-07-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=283623&type=HTML&mobileYn=&efYd=20260701"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=283623&type=HTML&mobileYn=&efYd=20260701",
+   "focus": "경정청구·가산세·제척기간, 세무조사"
   },
   {
    "name": "주식회사 등의 외부감사에 관한 법률 시행령",
@@ -244,7 +269,8 @@
    "pub": "2026-05-26",
    "eff": "2026-05-26",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=286317&type=HTML&mobileYn=&efYd=20260526"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=286317&type=HTML&mobileYn=&efYd=20260526",
+   "focus": "내부회계관리제도, 감사인 지정, 재무제표 제출"
   },
   {
    "name": "부가가치세법 시행령",
@@ -253,7 +279,8 @@
    "pub": "2026-02-27",
    "eff": "2026-04-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=283641&type=HTML&mobileYn=&efYd=20260401"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=283641&type=HTML&mobileYn=&efYd=20260401",
+   "focus": "수출 영세율, 세금계산서, 매입세액 공제"
   },
   {
    "name": "부가가치세법 시행규칙",
@@ -262,7 +289,8 @@
    "pub": "2026-03-20",
    "eff": "2026-04-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284995&type=HTML&mobileYn=&efYd=20260401"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284995&type=HTML&mobileYn=&efYd=20260401",
+   "focus": "수출 영세율, 세금계산서, 매입세액 공제"
   },
   {
    "name": "국세기본법 시행규칙",
@@ -271,7 +299,8 @@
    "pub": "2026-03-20",
    "eff": "2026-03-20",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284607&type=HTML&mobileYn=&efYd=20260320"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=284607&type=HTML&mobileYn=&efYd=20260320",
+   "focus": "경정청구·가산세·제척기간, 세무조사"
   },
   {
    "name": "부가가치세법",
@@ -280,7 +309,8 @@
    "pub": "2025-10-01",
    "eff": "2026-01-02",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=276117&type=HTML&mobileYn=&efYd=20260102"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=276117&type=HTML&mobileYn=&efYd=20260102",
+   "focus": "수출 영세율, 세금계산서, 매입세액 공제"
   },
   {
    "name": "주식회사 등의 외부감사에 관한 법률",
@@ -289,7 +319,8 @@
    "pub": "2025-04-01",
    "eff": "2025-04-01",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=270309&type=HTML&mobileYn=&efYd=20250401"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=270309&type=HTML&mobileYn=&efYd=20250401",
+   "focus": "내부회계관리제도, 감사인 지정, 재무제표 제출"
   },
   {
    "name": "주식회사 등의 외부감사에 관한 법률 시행규칙",
@@ -298,535 +329,12 @@
    "pub": "2019-12-17",
    "eff": "2019-12-17",
    "status": "현행",
-   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=212377&type=HTML&mobileYn=&efYd=20191217"
+   "link": "https://www.law.go.kr/DRF/lawService.do?target=law&MST=212377&type=HTML&mobileYn=&efYd=20191217",
+   "focus": "내부회계관리제도, 감사인 지정, 재무제표 제출"
   }
  ],
  "feed": {
-  "법인세": [
-   {
-    "id": "tt-2102575",
-    "date": "2026-09-28",
-    "src": "조세심판원",
-    "no": "조심 2026소2633",
-    "title": "공유제 콘도미니엄 회원권의 양도에 대하여 토지등 양도소득 과세특례(법법 §55의2)를 적용하여 법인세를 과세한 처분의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102575&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102105",
-    "date": "2026-09-17",
-    "src": "조세심판원",
-    "no": "조심 2026중1883",
-    "title": "청구법인이 「법인세법」상 지정기부금 단체(공익법인)로 지정받지 못한 것으로 보아 증여세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102105&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2103447",
-    "date": "2026-09-16",
-    "src": "조세심판원",
-    "no": "조심 2025서2320",
-    "title": "청구인이 21사업연도까지 신고한 기술사용료율(1.5%)이 과소신고된 것으로 보아 쟁점기술사용료율(2%)을 정상가격 요율로 과세조정하여 법인세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103447&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102257",
-    "date": "2026-09-15",
-    "src": "조세심판원",
-    "no": "조심 2025서3686",
-    "title": "쟁점주택 관련비용 등을 업무무관비용으로 보아 손금불산입하고, 임차료 상당액을 익금산입하여 법인세를 부과한 처분의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102257&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102909",
-    "date": "2026-09-03",
-    "src": "조세심판원",
-    "no": "조심 2026서1917",
-    "title": "청구법인이 법인세 신고시 국외특수관계법인과의 거래에 대하여 정상가격을 산정·적용하지 않았다가 이를 산정하여 실제 지급금액과의 차액을 손금산입하여야 한다는 경정청구를 제기한 것을 거부한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102909&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2103423",
-    "date": "2026-09-03",
-    "src": "조세심판원",
-    "no": "조심 2026서2652",
-    "title": "법인세 신고 시 제출한 재무제표에 오류가 있으므로 재무제표 수정 및 그에 따른 법인세 수정신고가 허용되어야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103423&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2099829",
-    "date": "2026-09-02",
-    "src": "조세심판원",
-    "no": "조심 2026전2835",
-    "title": "쟁점토지를 비사업용토지로 보아 법인세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2099829&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2099677",
-    "date": "2026-08-21",
-    "src": "조세심판원",
-    "no": "조심 2025부2651",
-    "title": "국외특수관계인에 지급한 용역제공 수수료가 손금산입요건(국조령 §12⑦)을 충족하지 못한 것으로 보아 손금불산입하고 법인세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2099677&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2100941",
-    "date": "2026-08-20",
-    "src": "조세심판원",
-    "no": "조심 2026서0180",
-    "title": "쟁점인건비를 쟁점법인과의 공동경비로 보아 매출액기준 과다부담액을 손금불산입하여 법인세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100941&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2100607",
-    "date": "2026-08-18",
-    "src": "조세심판원",
-    "no": "조심 2026서1014",
-    "title": "청구법인 소속 임직원이 쟁점자회사에 파견·상주 또는 출장하는 쟁점장소를 한·베트남 조세조약상 고정사업장으로 보아 청구법인이 베트남에 외국인계약자세로 원천징수·납부한 쟁점세액을 「법인세법」 제57조 제1항에 따른 외국납부세액으로 공제하여 법인세를 환급해야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100607&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2099707",
-    "date": "2026-08-12",
-    "src": "조세심판원",
-    "no": "조심 2026지0966",
-    "title": "법인세 경정자료로 지방소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2099707&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2843983",
-    "date": "2026-08-11",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규국조-0733",
-    "title": "여신전문금융회사가 외국금융기관에 지급하는 외화채무에 대한 이자가 법인세 면제 대상인지",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022694",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2097253",
-    "date": "2026-08-04",
-    "src": "조세심판원",
-    "no": "조심 2026서0307",
-    "title": "쟁점영업권의 감정평가액을 부인하고 상증세법상 보충적 평가액을 적용하여 법인세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2097253&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972199",
-    "date": "2026-06-22",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-1038[법인세과-1085]",
-    "title": "물적분할에 따라 분할법인이 취득한 주식의 취득가액 산정방법",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023736",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972193",
-    "date": "2026-06-22",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-0773[법인세과-1086]",
-    "title": "계약파기로 정상가격에 판매 불가능한 제조설비의 감액손실 인식 가능 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023740",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972197",
-    "date": "2026-06-15",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-1037[법인세과-1028]",
-    "title": "토지 등 양도소득 과세특례 적용 제외 주택 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023737",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2936143",
-    "date": "2026-06-05",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-1820[법인세과-995]",
-    "title": "사업의 양수 등으로 상시근로자를 승계시키는 경우에 상시근로자 수의 감소 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023390",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972187",
-    "date": "2026-06-02",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-0391[법인세과-975]",
-    "title": "특수관계인간 불공정 합병 시 합병당사법인들의 주식을 함께 보유하고 있는 법인 주주에게 부당행위계산부인 규정이 적용되는지 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023759",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972195",
-    "date": "2026-06-02",
-    "src": "국세청 해석",
-    "no": "서면-2026-법인-2602[법인세과-976]",
-    "title": "금융업을 주업으로 영위하는 법인의 성실신고확인서 제출 대상 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023739",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2774343",
-    "date": "2026-06-01",
-    "src": "국세청 해석",
-    "no": "서면-2024-법규재산-4676[법규과-1347]",
-    "title": "특정법인의 이익 계산시 ?시가-대가?에 상당하는 법인세 산출세액을 차감할 수 있는지 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000021808",
-    "summary": "",
-    "impact": ""
-   }
-  ],
-  "부가가치세": [
-   {
-    "id": "nts-2972189",
-    "date": "2026-09-29",
-    "src": "국세청 해석",
-    "no": "기준-2026-법규부가-0086[법규과-2560]",
-    "title": "세금계산서 발급대상 간이과세자의 사업 양도 시 사업양수자의 부가가치세 대리납부 가능 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023758",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102969",
-    "date": "2026-09-28",
-    "src": "조세심판원",
-    "no": "조심 2026서1235",
-    "title": "청구법인이 국내·외항공사들의 항공기 좌석을 사전에 매수하여 고객에게 판매한 쟁점거래가 「부가가치세법」 제23조에 따른 외국항행용역의 공급으로서 영세율 대상에 해당하는지 여부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102969&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102903",
-    "date": "2026-09-23",
-    "src": "조세심판원",
-    "no": "조심 2026서1147",
-    "title": "특수관계법인 간 거래를 가공거래로 보아 부가가치세를 과세한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102903&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101725",
-    "date": "2026-09-17",
-    "src": "조세심판원",
-    "no": "조심 2026소1773",
-    "title": "실물거래 없이 가공세금계산서를 수취한 것으로 보아 부가가치세를 과세한 처분",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101725&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2100919",
-    "date": "2026-09-16",
-    "src": "조세심판원",
-    "no": "조심 2026부2277",
-    "title": "위장매입세금계산서를 수취한 것으로 보아 부가가치세 등을 부과한 처분",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100919&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101663",
-    "date": "2026-09-16",
-    "src": "조세심판원",
-    "no": "조심 2026소1577",
-    "title": "위장매입세금계산서를 수취한 것으로 보아 부가가치세 등을 부과한 처분",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101663&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2103449",
-    "date": "2026-09-15",
-    "src": "조세심판원",
-    "no": "조심 2026광1246",
-    "title": "쟁점교육용역이 부가가치세 면제대상이라는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103449&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2953939",
-    "date": "2026-09-14",
-    "src": "국세청 해석",
-    "no": "서면-2023-부가-4342[부가가치세과-1169]",
-    "title": "국내 사업자의 선불형 해외 유심 및 이심 판매 시 부가가치세 과세 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023674",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101695",
-    "date": "2026-09-14",
-    "src": "조세심판원",
-    "no": "조심 2026서0561",
-    "title": "쟁점용역이 실비로 공급한 것으로서 부가가치세 면제 대상에 해당한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101695&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2972185",
-    "date": "2026-09-11",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규부가-0549[법규과-2419]",
-    "title": "GPU운영관리?유지보수 대가로 GPU 사용 권리를 부여받은 경우 부가가치세 과세 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023778",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2100561",
-    "date": "2026-09-10",
-    "src": "조세심판원",
-    "no": "조심 2026부1232",
-    "title": "청구인이 선박임가공용역을 제공한 실제 공급자라고 보아 청구인에게 부가가치세 등을 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100561&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102117",
-    "date": "2026-09-10",
-    "src": "조세심판원",
-    "no": "조심 2026서1821",
-    "title": "청구법인이 제공한 쟁점용역이 부가가치세 면세대상인 주택임대용역으로 볼 수 있는지 여부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102117&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2899327",
-    "date": "2026-09-04",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규부가-0975[법규과-2308]",
-    "title": "공립학교가 공급하는 태양광 전력의 부가가치세 면제 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023081",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2900605",
-    "date": "2026-09-04",
-    "src": "국세청 해석",
-    "no": "서면-2025-부가-4888[부가가치세과-2240]",
-    "title": "국외 수탁가공용 원재료 반출 시 영세율 세금계산서 미발급에 따른 가산세 적용 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022869",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2100457",
-    "date": "2026-09-03",
-    "src": "조세심판원",
-    "no": "조심 2026소1785",
-    "title": "쟁점쿠폰은 상품권에 해당하고, 쟁점수익은 상품권 판매대가이므로 부가가치세 과세대상이 아니라는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100457&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2899337",
-    "date": "2026-09-02",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규부가-1091",
-    "title": "에탄올 공정을 거친 난백분(알의 흰자가루)를 판매하는 경우 부가가치세 면제 대상인지",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022963",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102183",
-    "date": "2026-09-01",
-    "src": "조세심판원",
-    "no": "조심 2026부1679",
-    "title": "쟁점거래를 가공거래로 보아 부가가치세 등을 부과한 처분의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102183&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2899343",
-    "date": "2026-08-28",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규부가-0594[법규과-2260]",
-    "title": "내국법인 미등기 해외지점이 해외에서 공급한 건설용역에 대한 부가가치세 과세 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022937",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2098793",
-    "date": "2026-08-27",
-    "src": "조세심판원",
-    "no": "조심 2026서0879",
-    "title": "쟁점사업장의 실사업자는 청구인의 부친이므로 청구인 명의로 기납부한 부가가치세를 환급해야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2098793&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2864681",
-    "date": "2026-08-11",
-    "src": "국세청 해석",
-    "no": "사전-2026-법규부가-0695[법규과-2046]",
-    "title": "사립박물관 입장료 및 해설, 교육프로그램의 부가가치세 면제 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022801",
-    "summary": "",
-    "impact": ""
-   }
-  ],
-  "소득세": [
-   {
-    "id": "tt-2102143",
-    "date": "2026-10-01",
-    "src": "조세심판원",
-    "no": "조심 2026방0604",
-    "title": "이 건 종합소득세 부과처분이 위법하므로 이를 근거로 과세된 이 건 개인지방소득세 부과처분도 위법하다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102143&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102195",
-    "date": "2026-09-30",
-    "src": "조세심판원",
-    "no": "조심 2026구2512",
-    "title": "쟁점급여를 가공급여로 보아 필요경비 부인하고 종합소득세를 부과한 처분의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102195&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102565",
-    "date": "2026-09-30",
-    "src": "조세심판원",
-    "no": "조심 2026서2802",
-    "title": "쟁점소득이 국내에서 제공된 용역의 대가에 해당하여 국외원천소득이 아닌 것으로 보아 외국납부세액공제를 부인하고 종합소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102565&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2103307",
-    "date": "2026-09-29",
-    "src": "조세심판원",
-    "no": "조심 2026인2801",
-    "title": "매매계약서상 이축권 가액이 특정되어 있지 않으므로, 처분청이 이축권 가액을 구분하여 양도소득세를 부과한 처분은 부당하다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103307&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101753",
-    "date": "2026-09-28",
-    "src": "조세심판원",
-    "no": "조심 2026인3106",
-    "title": "양도소득세 부과처분(원처분)이 과세예고통지 누락과 부과제척기간 경과로 위법한지 여부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101753&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102199",
-    "date": "2026-09-23",
-    "src": "조세심판원",
-    "no": "조심 2026서1969",
-    "title": "쟁점대부금을 청구인의 상여로 소득처분하여 종합소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102199&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101677",
-    "date": "2026-09-22",
-    "src": "조세심판원",
-    "no": "조심 2026부0242",
-    "title": "쟁점금액을 청구인의 상여로 소득처분하여 종합소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101677&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102159",
-    "date": "2026-09-22",
-    "src": "조세심판원",
-    "no": "조심 2026소1483",
-    "title": "횡령금액을 상여로 처분하여 원천징수분 근로소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102159&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101721",
-    "date": "2026-09-18",
-    "src": "조세심판원",
-    "no": "조심 2025구4453",
-    "title": "쟁점금액을 비영업대금의 이익으로 보아 종합소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101721&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2103319",
-    "date": "2026-09-18",
-    "src": "조세심판원",
-    "no": "조심 2025전4245",
-    "title": "쟁점금액을 비영업대금의 이익으로 보아 종합소득세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103319&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2101731",
-    "date": "2026-09-17",
-    "src": "조세심판원",
-    "no": "조심 2025중4213",
-    "title": "쟁점비용은 쟁점용역(PM용역)에 대한 대가이므로 청구인들의 양도소득세 필요경비로 인정하여야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101731&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2102247",
-    "date": "2026-09-17",
-    "src": "조세심판원",
-    "no": "조심 2026중2964",
-    "title": "쟁점지연손해금을 기타소득(위약금 등)으로 보아 종합소득세를 부과한 처분의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102247&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
+  "세액공제·감면": [
    {
     "id": "nts-2917531",
     "date": "2026-08-06",
@@ -835,17 +343,12 @@
     "title": "고용증대세액공제 적용시 상속으로 고용을 승계한 경우 추가공제 가능 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023140",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2864759",
-    "date": "2026-07-23",
-    "src": "국세청 해석",
-    "no": "서면-2026-소득-2516[소득세과-1613]",
-    "title": "성실신고확인비용 세액공제 적용 시 이월된 세액이 있을 경우",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022778",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "가공",
+     "고용"
+    ]
    },
    {
     "id": "nts-2791999",
@@ -855,60 +358,44 @@
     "title": "통합투자세액공제 추가공제 적용시 3년간 연평균 투자금액 계산 방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022475",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2936145",
-    "date": "2026-07-13",
-    "src": "국세청 해석",
-    "no": "서면-2026-소득-1665[소득세과-1529]",
-    "title": "신탁계약을 통해 불특정 다수로부터 자기주식  취득 후 소각하는 경우 의제배당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023228",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2917543",
-    "date": "2026-07-13",
-    "src": "국세청 해석",
-    "no": "서면-2025-소득-0190[소득세과-1533]",
-    "title": "벤처기업의 유상증자에 참여한 경우 조세특례제한법 제16조 소득공제 가능여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023138",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2917537",
-    "date": "2026-07-13",
-    "src": "국세청 해석",
-    "no": "서면-2026-소득-1067[소득세과-1531]",
-    "title": "주택신축판매업을 공동으로 영위하다가 출자비율에 따라 각자 분할 취득한 경우",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023139",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2791993",
-    "date": "2026-07-13",
-    "src": "국세청 해석",
-    "no": "서면-2026-소득-1072[소득세과-1532]",
-    "title": "성실신고확인비용에 대한 세액공제 적용 가능 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022473",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2791987",
-    "date": "2026-07-08",
-    "src": "국세청 해석",
-    "no": "서면-2026-소득-1666[소득세과-1495]",
-    "title": "폐어구 회수촉진포인트 및 수매비의 소득세법상 과세소득에 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022474",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "가공",
+     "투자"
+    ]
    }
   ],
-  "감가상각": [
+  "감가상각·자산평가": [
+   {
+    "id": "tt-2097253",
+    "date": "2026-08-04",
+    "src": "조세심판원",
+    "no": "조심 2026서0307",
+    "title": "쟁점영업권의 감정평가액을 부인하고 상증세법상 보충적 평가액을 적용하여 법인세를 부과한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2097253&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "nts-2972193",
+    "date": "2026-06-22",
+    "src": "국세청 해석",
+    "no": "서면-2026-법인-0773[법인세과-1086]",
+    "title": "계약파기로 정상가격에 판매 불가능한 제조설비의 감액손실 인식 가능 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023740",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "제조",
+     "설비",
+     "정상가격",
+     "감액"
+    ]
+   },
    {
     "id": "tt-2087657",
     "date": "2026-04-16",
@@ -917,7 +404,11 @@
     "title": "쟁점건물에 대한 수용보상금 산정 시 감가상각이 반영되었으므로 그 취득가액에서 감가상가비를 차감하는 것은 이중차감에 해당한다는 청구주장의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2087657&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "tt-2085957",
@@ -927,7 +418,11 @@
     "title": "임의의 사업연도에 손금산입한 감가상각비 한도초과액을 손금불산입하여 법인세를 부과한 처분의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2085957&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "tt-2079583",
@@ -937,7 +432,11 @@
     "title": "청구법인이 특수관계법인으로부터 사업부문을 적격현물출자받는 과정에서 쟁점영업권을 취득하였으므로 감가상각(신고조정)하여야 한다는 청구주장의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2079583&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "nts-2293527",
@@ -947,7 +446,11 @@
     "title": "적격인적분할 시 존속하는 분할법인의 업무용승용차의 처분손실 및 감가상각비 상당액 이월액의 세무처리 방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000017341",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "nts-2293615",
@@ -957,17 +460,12 @@
     "title": "완전자회사 합병시 발생한 영업권 감가상각 가능 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000016648",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2272071",
-    "date": "2025-10-21",
-    "src": "국세청 해석",
-    "no": "서면-2022-법규소득-5281[법규과-2425]",
-    "title": "개인사업자가 공동사업으로 전환시 평가한 영업권에 대한 감가상각자산 가액 및 기타소득 과세범위",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000015353",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "합병"
+    ]
    },
    {
     "id": "nts-2293333",
@@ -977,7 +475,13 @@
     "title": "볼링장 레인설비의 감가상각 기준내용연수 적용방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000017745",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "설비",
+     "감가상각",
+     "내용연수"
+    ]
    },
    {
     "id": "nts-1510903",
@@ -987,7 +491,12 @@
     "title": "감가상각자산의 내용연수 신고가 가능한 새로 사업을 개시하는 사업자의 의미",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000012348",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "내용연수"
+    ]
    },
    {
     "id": "nts-1380063",
@@ -997,7 +506,12 @@
     "title": "화물 운송업 영위 법인이 고정자산인 CA컨테이너를 감가상각하는 경우 기준내용연수 적용방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000012055",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "내용연수"
+    ]
    },
    {
     "id": "tt-2041787",
@@ -1007,7 +521,12 @@
     "title": "적격물적분할로 설립된 청구법인이 보유한 쟁점저작물은 감가상각대상 무형자산으로, 감정평가액을 취득가액으로 하여 산정된 감가상각비를 손금산입하여야 한다는 청구주장의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2041787&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "물적분할"
+    ]
    },
    {
     "id": "tt-1031022",
@@ -1017,7 +536,13 @@
     "title": "청구법인이 쟁점외법인의 쟁점사업부를 양수하는 것으로 협의하고, 쟁점사업부를 물적분할하여 설립된 쟁점신설법인의 발행주식을 양수한 후 합병한 경우, 쟁점신설법인이 물적분할 당시 쟁점외법인으로부터 쟁점영업권을 취득한 것으로 보아 감가상각비를 손금산입하여야 한다는 청구주장의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=1031022&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "물적분할",
+     "합병"
+    ]
    },
    {
     "id": "nts-360226",
@@ -1027,7 +552,12 @@
     "title": "K-IFRS 적용 법인의 감가상각비 신고조정 특례 적용 가능 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000008083",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "감가상각",
+     "K-IFRS"
+    ]
    },
    {
     "id": "tt-1030584",
@@ -1037,7 +567,11 @@
     "title": "쟁점상표권 매입액을 부인하고 관련 감가상각비를 손급불산입하여 법인세를 부과하고 소득금액변동통지한 처분의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=1030584&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "nts-360202",
@@ -1047,7 +581,12 @@
     "title": "임가공계약을 금융리스로 회계처리한 경우 감가상각의 주체",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000008115",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "가공",
+     "감가상각"
+    ]
    },
    {
     "id": "nts-988425",
@@ -1057,7 +596,12 @@
     "title": "태양광발전설비의 감가상각방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011185",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "설비",
+     "감가상각"
+    ]
    },
    {
     "id": "tt-183140",
@@ -1067,7 +611,11 @@
     "title": "청구법인이 특수관계인인 대표이사로부터 취득한 쟁점상표권 가액에 대한 감가상각비 상당액을 쟁점규정을 적용하여 신고조정에 의하여 손금산입할 수 있는지 여부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=183140&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "nts-988461",
@@ -1077,7 +625,11 @@
     "title": "분할신설법인이 신규취득한 자산의 감가상각방법",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011176",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    },
    {
     "id": "nts-988477",
@@ -1087,7 +639,13 @@
     "title": "금형의 감가상각 시 기준내용연수",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011172",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "금형",
+     "감가상각",
+     "내용연수"
+    ]
    },
    {
     "id": "tt-79112",
@@ -1097,69 +655,225 @@
     "title": "쟁점특허권의 소유권이 청구법인에게 귀속된 것으로 보아 특허권 양수대금을 상여처분하고, 감가상각비를 손금불산입한 처분의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=79112&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-955278",
-    "date": "2023-09-12",
-    "src": "조세심판원",
-    "no": "조심 2023인6924",
-    "title": "쟁점영업권은 적절한 평가방법에 따라 유상으로 취득한 것으로 감가상각자산으로 인정하여야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=955278&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "감가상각"
+    ]
    }
   ],
-  "접대비": [
+  "부가세·세금계산서": [
    {
-    "id": "tt-2103399",
-    "date": "2026-10-01",
+    "id": "tt-2102969",
+    "date": "2026-09-28",
     "src": "조세심판원",
-    "no": "조심 2025인2829",
-    "title": "청구법인이 분양해지자에 대해 쟁점위약금을 면제한 것이 접대비에 해당하는지 여부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103399&type=HTML&mobileYn=",
+    "no": "조심 2026서1235",
+    "title": "청구법인이 국내·외항공사들의 항공기 좌석을 사전에 매수하여 고객에게 판매한 쟁점거래가 「부가가치세법」 제23조에 따른 외국항행용역의 공급으로서 영세율 대상에 해당하는지 여부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102969&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "영세율"
+    ]
    },
    {
-    "id": "tt-2076497",
-    "date": "2025-12-03",
+    "id": "tt-2102903",
+    "date": "2026-09-23",
     "src": "조세심판원",
-    "no": "조심 2025서2975",
-    "title": "청구법인이 매출처로부터 내부기준 등에 불구하고 잔여유효기간이 임박한 의약품을 무조건 반품 받은 것으로 보고 접대비에 해당한다고 본 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2076497&type=HTML&mobileYn=",
+    "no": "조심 2026서1147",
+    "title": "특수관계법인 간 거래를 가공거래로 보아 부가가치세를 과세한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102903&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "가공"
+    ]
    },
    {
-    "id": "tt-2072677",
-    "date": "2025-09-08",
+    "id": "tt-2101725",
+    "date": "2026-09-17",
     "src": "조세심판원",
-    "no": "조심 2025중0878",
-    "title": "쟁점금액이 접대성 경비에 해당되는 것으로 보아 접대비 한도초과액을 필요경비 부인하여 과세한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2072677&type=HTML&mobileYn=",
+    "no": "조심 2026소1773",
+    "title": "실물거래 없이 가공세금계산서를 수취한 것으로 보아 부가가치세를 과세한 처분",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101725&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "가공",
+     "세금계산서"
+    ]
    },
    {
-    "id": "tt-2059437",
-    "date": "2025-03-13",
+    "id": "tt-2100919",
+    "date": "2026-09-16",
     "src": "조세심판원",
-    "no": "조심 2024광5326",
-    "title": "청구법인이 수출 관련 매출채권을 사전약정이 없이 임의포기한 것으로 보고 접대비로 보아 한도초과액을 손금불산입한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2059437&type=HTML&mobileYn=",
+    "no": "조심 2026부2277",
+    "title": "위장매입세금계산서를 수취한 것으로 보아 부가가치세 등을 부과한 처분",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100919&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "세금계산서"
+    ]
    },
    {
-    "id": "tt-1031674",
-    "date": "2024-12-24",
+    "id": "tt-2101663",
+    "date": "2026-09-16",
     "src": "조세심판원",
-    "no": "조심 2024구3679",
-    "title": "후원방문판매업을 영위하는 청구법인이 위탁관리인에게 지급하는 쟁점용역수수료를 접대비(기업업무추진비)로 보아 그 한도초과액을 손금불산입한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=1031674&type=HTML&mobileYn=",
+    "no": "조심 2026소1577",
+    "title": "위장매입세금계산서를 수취한 것으로 보아 부가가치세 등을 부과한 처분",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101663&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "세금계산서"
+    ]
+   },
+   {
+    "id": "tt-2103449",
+    "date": "2026-09-15",
+    "src": "조세심판원",
+    "no": "조심 2026광1246",
+    "title": "쟁점교육용역이 부가가치세 면제대상이라는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103449&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "nts-2953939",
+    "date": "2026-09-14",
+    "src": "국세청 해석",
+    "no": "서면-2023-부가-4342[부가가치세과-1169]",
+    "title": "국내 사업자의 선불형 해외 유심 및 이심 판매 시 부가가치세 과세 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023674",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "tt-2101695",
+    "date": "2026-09-14",
+    "src": "조세심판원",
+    "no": "조심 2026서0561",
+    "title": "쟁점용역이 실비로 공급한 것으로서 부가가치세 면제 대상에 해당한다는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2101695&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "nts-2972185",
+    "date": "2026-09-11",
+    "src": "국세청 해석",
+    "no": "사전-2026-법규부가-0549[법규과-2419]",
+    "title": "GPU운영관리?유지보수 대가로 GPU 사용 권리를 부여받은 경우 부가가치세 과세 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023778",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "tt-2100561",
+    "date": "2026-09-10",
+    "src": "조세심판원",
+    "no": "조심 2026부1232",
+    "title": "청구인이 선박임가공용역을 제공한 실제 공급자라고 보아 청구인에게 부가가치세 등을 부과한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100561&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "가공"
+    ]
+   },
+   {
+    "id": "nts-2900605",
+    "date": "2026-09-04",
+    "src": "국세청 해석",
+    "no": "서면-2025-부가-4888[부가가치세과-2240]",
+    "title": "국외 수탁가공용 원재료 반출 시 영세율 세금계산서 미발급에 따른 가산세 적용 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022869",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "원재료",
+     "가공",
+     "영세율",
+     "세금계산서"
+    ]
+   },
+   {
+    "id": "tt-2100457",
+    "date": "2026-09-03",
+    "src": "조세심판원",
+    "no": "조심 2026소1785",
+    "title": "쟁점쿠폰은 상품권에 해당하고, 쟁점수익은 상품권 판매대가이므로 부가가치세 과세대상이 아니라는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100457&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "nts-2899337",
+    "date": "2026-09-02",
+    "src": "국세청 해석",
+    "no": "사전-2026-법규부가-1091",
+    "title": "에탄올 공정을 거친 난백분(알의 흰자가루)를 판매하는 경우 부가가치세 면제 대상인지",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022963",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "tt-2102183",
+    "date": "2026-09-01",
+    "src": "조세심판원",
+    "no": "조심 2026부1679",
+    "title": "쟁점거래를 가공거래로 보아 부가가치세 등을 부과한 처분의 당부 등",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102183&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "가공"
+    ]
+   },
+   {
+    "id": "nts-2899343",
+    "date": "2026-08-28",
+    "src": "국세청 해석",
+    "no": "사전-2026-법규부가-0594[법규과-2260]",
+    "title": "내국법인 미등기 해외지점이 해외에서 공급한 건설용역에 대한 부가가치세 과세 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022937",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
+   },
+   {
+    "id": "tt-2098793",
+    "date": "2026-08-27",
+    "src": "조세심판원",
+    "no": "조심 2026서0879",
+    "title": "쟁점사업장의 실사업자는 청구인의 부친이므로 청구인 명의로 기납부한 부가가치세를 환급해야 한다는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2098793&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "하",
+    "keys": []
    },
    {
     "id": "tt-106170",
@@ -1169,199 +883,74 @@
     "title": "쟁점리조트 취득비용을 접대비에 해당하는 것으로 보아 부가가치세 매입세액을 불공제한 처분의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=106170&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-88408",
-    "date": "2024-03-29",
-    "src": "조세심판원",
-    "no": "조심 2023서9469",
-    "title": "청구법인의 쟁점직원전용매장 내에서 이루어진 쟁점협력업체직원에대한 할인판매와 관련하여 그할인액을 접대비로 볼 수 있는지 여부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=88408&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-104590",
-    "date": "2023-12-06",
-    "src": "조세심판원",
-    "no": "조심 2021서2340",
-    "title": "쟁점심포지움경비가 접대비인지 여부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=104590&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-11840",
-    "date": "2023-11-23",
-    "src": "조세심판원",
-    "no": "조심 2022서7841",
-    "title": "청구법인의 직원매장 내에서 이루어진 쟁점협력업체 직언에 대한 할인액을 접대비로 볼 수 있는지 여부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=11840&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-39934",
-    "date": "2023-07-07",
-    "src": "국세청 해석",
-    "no": "서면-2022-법인-5231[법인세과-1080]",
-    "title": "해외법인에 대한 공사미수금을 임의로 포기하는 경우 접대비 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000002407",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-288422",
-    "date": "2023-01-10",
-    "src": "국세청 해석",
-    "no": "사전-2020-법규소득-0419[법규과-73]",
-    "title": "인적용역사업자의 접대비 기본한도금액 산정",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000574868",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-83436",
-    "date": "2022-10-19",
-    "src": "조세심판원",
-    "no": "조심 2021서2411",
-    "title": "쟁점할인액은 접대비가 아니라 판매부대비용에 해당한다는 청구주장의 당부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=83436&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-990346",
-    "date": "2022-01-27",
-    "src": "조세심판원",
-    "no": "조심 2021서0977",
-    "title": "쟁점수수료를 ‘대규모 유통업자가 부담할 인건비를 AAA가 대납한 접대비’에 해당하는 것으로 보아 법인세(한도초과액 손금부인)를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=990346&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-110764",
-    "date": "2021-11-08",
-    "src": "조세심판원",
-    "no": "조심 2021구2113",
-    "title": "청구법인이 쟁점손해사정법인들에게 지급한 쟁점비용을 접대비로 보아 법인세 및 부가가치세를 부과한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=110764&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-38198",
-    "date": "2020-07-21",
-    "src": "국세청 해석",
-    "no": "서면-2020-법인-1478[법인세과-2614]",
-    "title": "지출비용의 접대비 해당 여부 등",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000445244",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-232540",
-    "date": "2020-04-03",
-    "src": "국세청 해석",
-    "no": "서면-2019-법인-3574[법인세과-1160]",
-    "title": "영화예매권 구입비용의 접대비 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000445144",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-156832",
-    "date": "2019-08-12",
-    "src": "국세청 해석",
-    "no": "서면-2018-법인-2976[법인세과-2262]",
-    "title": "지방자치단체 지시에 따른 임대료 인하액 등의 접대비 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000414732",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-187462",
-    "date": "2018-05-30",
-    "src": "국세청 해석",
-    "no": "서면-2018-법령해석법인-0532[법령해석과-1479]",
-    "title": "중소기업 접대비 기본한도 적용방법",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000325374",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-127248",
-    "date": "2018-02-09",
-    "src": "국세청 해석",
-    "no": "서면-2016-법인-4462[법인세과-335]",
-    "title": "문화접대비 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000364939",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-259932",
-    "date": "2018-01-15",
-    "src": "국세청 해석",
-    "no": "서면-2017-법인-2002[법인세과-111]",
-    "title": "광고 수주를 위해 지출하는 비용의 접대비 해당 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000325284",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "매입세액",
+     "접대비"
+    ]
    }
   ],
-  "대손금": [
+  "국제조세·이전가격": [
    {
-    "id": "tt-2083599",
-    "date": "2026-03-11",
+    "id": "tt-2103447",
+    "date": "2026-09-16",
     "src": "조세심판원",
-    "no": "조심 2026서0305",
-    "title": "청구법인이 쟁점채무자에 대여한 쟁점대여금을 대손금으로 손금산입한 것에 대하여 회수불능이 객관적으로 확정되지 않았다고 보아 부인한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2083599&type=HTML&mobileYn=",
+    "no": "조심 2025서2320",
+    "title": "청구인이 21사업연도까지 신고한 기술사용료율(1.5%)이 과소신고된 것으로 보아 쟁점기술사용료율(2%)을 정상가격 요율로 과세조정하여 법인세를 부과한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103447&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "정상가격",
+     "기술사용료"
+    ]
    },
    {
-    "id": "tt-2076089",
-    "date": "2025-12-24",
+    "id": "tt-2102909",
+    "date": "2026-09-03",
     "src": "조세심판원",
-    "no": "조심 2023서9876",
-    "title": "청구법인이 특수관계법인에 대한 쟁점채권(미수수수료)를 임의포기하여 대손금의 손금 산입요건을 충족하지 못한 것인지 여부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2076089&type=HTML&mobileYn=",
+    "no": "조심 2026서1917",
+    "title": "청구법인이 법인세 신고시 국외특수관계법인과의 거래에 대하여 정상가격을 산정·적용하지 않았다가 이를 산정하여 실제 지급금액과의 차액을 손금산입하여야 한다는 경정청구를 제기한 것을 거부한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2102909&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "정상가격",
+     "국외특수관계",
+     "경정청구"
+    ]
    },
    {
-    "id": "nts-2210399",
-    "date": "2025-07-23",
-    "src": "국세청 해석",
-    "no": "서면-2025-법인-0868[법인세과-1170]",
-    "title": "미회수 채권금액을 대손금으로 손금산입할 수 있는지 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000015035",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-2210435",
-    "date": "2025-07-23",
-    "src": "국세청 해석",
-    "no": "서면-2025-법인-0697[법인세과-1171]",
-    "title": "채권의 출자전환 후 무상소각되는 경우 대손금 손금산입 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000015040",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-2057421",
-    "date": "2025-07-02",
+    "id": "tt-2099677",
+    "date": "2026-08-21",
     "src": "조세심판원",
-    "no": "조심 2024서5258",
-    "title": "쟁점매출채권에 대한 소멸시효는 3년으로 그 소멸시효가 완성되었으므로 대손금으로 인정하여야 한다는 청구주장의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2057421&type=HTML&mobileYn=",
+    "no": "조심 2025부2651",
+    "title": "국외특수관계인에 지급한 용역제공 수수료가 손금산입요건(국조령 §12⑦)을 충족하지 못한 것으로 보아 손금불산입하고 법인세를 부과한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2099677&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "국외특수관계",
+     "용역제공"
+    ]
+   },
+   {
+    "id": "tt-2100607",
+    "date": "2026-08-18",
+    "src": "조세심판원",
+    "no": "조심 2026서1014",
+    "title": "청구법인 소속 임직원이 쟁점자회사에 파견·상주 또는 출장하는 쟁점장소를 한·베트남 조세조약상 고정사업장으로 보아 청구법인이 베트남에 외국인계약자세로 원천징수·납부한 쟁점세액을 「법인세법」 제57조 제1항에 따른 외국납부세액으로 공제하여 법인세를 환급해야 한다는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2100607&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "외국납부"
+    ]
    },
    {
     "id": "nts-1511723",
@@ -1371,17 +960,11 @@
     "title": "해외 채무자에 대한 손해배상채권의 대손금 해당여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000012279",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-1202305",
-    "date": "2025-03-05",
-    "src": "국세청 해석",
-    "no": "사전-2024-법규법인-1038[법규과-441]",
-    "title": "법인세법상 대손요건 미비로 손금불산입한 후 대손사유가 발생한 경우 대손금의 손금 귀속시기",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011727",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "nts-988229",
@@ -1391,7 +974,186 @@
     "title": "해외채권을 대손금으로 손금산입 할 수 있는지 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011079",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   }
+  ],
+  "손금·익금 쟁점": [
+   {
+    "id": "tt-2103399",
+    "date": "2026-10-01",
+    "src": "조세심판원",
+    "no": "조심 2025인2829",
+    "title": "청구법인이 분양해지자에 대해 쟁점위약금을 면제한 것이 접대비에 해당하는지 여부 등",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2103399&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "접대비"
+    ]
+   },
+   {
+    "id": "nts-2972187",
+    "date": "2026-06-02",
+    "src": "국세청 해석",
+    "no": "서면-2026-법인-0391[법인세과-975]",
+    "title": "특수관계인간 불공정 합병 시 합병당사법인들의 주식을 함께 보유하고 있는 법인 주주에게 부당행위계산부인 규정이 적용되는지 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023759",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "합병"
+    ]
+   },
+   {
+    "id": "tt-2083599",
+    "date": "2026-03-11",
+    "src": "조세심판원",
+    "no": "조심 2026서0305",
+    "title": "청구법인이 쟁점채무자에 대여한 쟁점대여금을 대손금으로 손금산입한 것에 대하여 회수불능이 객관적으로 확정되지 않았다고 보아 부인한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2083599&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "tt-2076089",
+    "date": "2025-12-24",
+    "src": "조세심판원",
+    "no": "조심 2023서9876",
+    "title": "청구법인이 특수관계법인에 대한 쟁점채권(미수수수료)를 임의포기하여 대손금의 손금 산입요건을 충족하지 못한 것인지 여부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2076089&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "tt-2076497",
+    "date": "2025-12-03",
+    "src": "조세심판원",
+    "no": "조심 2025서2975",
+    "title": "청구법인이 매출처로부터 내부기준 등에 불구하고 잔여유효기간이 임박한 의약품을 무조건 반품 받은 것으로 보고 접대비에 해당한다고 본 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2076497&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "접대비",
+     "반품"
+    ]
+   },
+   {
+    "id": "tt-2072677",
+    "date": "2025-09-08",
+    "src": "조세심판원",
+    "no": "조심 2025중0878",
+    "title": "쟁점금액이 접대성 경비에 해당되는 것으로 보아 접대비 한도초과액을 필요경비 부인하여 과세한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2072677&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "접대비"
+    ]
+   },
+   {
+    "id": "nts-2210399",
+    "date": "2025-07-23",
+    "src": "국세청 해석",
+    "no": "서면-2025-법인-0868[법인세과-1170]",
+    "title": "미회수 채권금액을 대손금으로 손금산입할 수 있는지 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000015035",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "nts-2210435",
+    "date": "2025-07-23",
+    "src": "국세청 해석",
+    "no": "서면-2025-법인-0697[법인세과-1171]",
+    "title": "채권의 출자전환 후 무상소각되는 경우 대손금 손금산입 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000015040",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "tt-2057421",
+    "date": "2025-07-02",
+    "src": "조세심판원",
+    "no": "조심 2024서5258",
+    "title": "쟁점매출채권에 대한 소멸시효는 3년으로 그 소멸시효가 완성되었으므로 대손금으로 인정하여야 한다는 청구주장의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2057421&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "대손",
+     "매출채권"
+    ]
+   },
+   {
+    "id": "tt-2059437",
+    "date": "2025-03-13",
+    "src": "조세심판원",
+    "no": "조심 2024광5326",
+    "title": "청구법인이 수출 관련 매출채권을 사전약정이 없이 임의포기한 것으로 보고 접대비로 보아 한도초과액을 손금불산입한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=2059437&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "수출",
+     "매출채권",
+     "접대비"
+    ]
+   },
+   {
+    "id": "nts-1202305",
+    "date": "2025-03-05",
+    "src": "국세청 해석",
+    "no": "사전-2024-법규법인-1038[법규과-441]",
+    "title": "법인세법상 대손요건 미비로 손금불산입한 후 대손사유가 발생한 경우 대손금의 손금 귀속시기",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000011727",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "tt-1031674",
+    "date": "2024-12-24",
+    "src": "조세심판원",
+    "no": "조심 2024구3679",
+    "title": "후원방문판매업을 영위하는 청구법인이 위탁관리인에게 지급하는 쟁점용역수수료를 접대비(기업업무추진비)로 보아 그 한도초과액을 손금불산입한 처분의 당부",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=1031674&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "상",
+    "keys": [
+     "기업업무추진비",
+     "접대비"
+    ]
    },
    {
     "id": "nts-360492",
@@ -1401,7 +1163,11 @@
     "title": "세무조정을 통한 대손금의 손금 산입 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000007430",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "nts-360488",
@@ -1411,7 +1177,11 @@
     "title": "파산에 따른 대손금의 손금 귀속시기",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000007432",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "tt-967436",
@@ -1421,7 +1191,25 @@
     "title": "쟁점대손금을 법인세법 상 손금으로 인정할 수 있는지 여부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=967436&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   },
+   {
+    "id": "tt-88408",
+    "date": "2024-03-29",
+    "src": "조세심판원",
+    "no": "조심 2023서9469",
+    "title": "청구법인의 쟁점직원전용매장 내에서 이루어진 쟁점협력업체직원에대한 할인판매와 관련하여 그할인액을 접대비로 볼 수 있는지 여부 등",
+    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=88408&type=HTML&mobileYn=",
+    "summary": "",
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "접대비"
+    ]
    },
    {
     "id": "nts-95510",
@@ -1431,7 +1219,11 @@
     "title": "파산폐지 결정시점에 대손금의 손금산입 가능 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000004166",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "tt-965344",
@@ -1441,7 +1233,11 @@
     "title": "청구법인이 특수관계법인에게 쟁점대여금을 대여하였다가 현물출자하여 쟁점주식을 취득한 후 이를 양도하고 처분손실을 계상한 것과 관련하여, 쟁점대여금을 업무무관 가지급금으로 보고 위 처분손실을 업무무관가지급금의 대손금으로 보아 손금불산입한 처분의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=965344&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "tt-977430",
@@ -1451,7 +1247,11 @@
     "title": "청구법인이 최대주주·대표이사로부터 청구법인 발행주식을 취득한 것과 관련하여, 위 발행주식 평가에 있어 순손익액 산정시 청구법인이 소유한 쟁점채권과 관련한 대손금을 차감하여야 한다는 청구주장의 당부",
     "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=977430&type=HTML&mobileYn=",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
    },
    {
     "id": "nts-360280",
@@ -1461,57 +1261,39 @@
     "title": "건설업을 영위하는 내국법인이 비특수관계인의 건설사업을 위한 지급보증을 연대보증하는 경우 해당 채무보증의 대손금 손금산입 가능 여부",
     "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000008038",
     "summary": "",
-    "impact": ""
-   },
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "대손"
+    ]
+   }
+  ],
+  "조직재편·자본거래": [
    {
-    "id": "nts-147842",
-    "date": "2024-01-09",
+    "id": "nts-2936145",
+    "date": "2026-07-13",
     "src": "국세청 해석",
-    "no": "서면-2023-법인-0157[법인세과-73]",
-    "title": "대손금의 손금산입 사업연도",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000002411",
+    "no": "서면-2026-소득-1665[소득세과-1529]",
+    "title": "신탁계약을 통해 불특정 다수로부터 자기주식  취득 후 소각하는 경우 의제배당 여부",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023228",
     "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "하",
+    "keys": []
    },
    {
-    "id": "tt-1000100",
-    "date": "2023-12-06",
-    "src": "조세심판원",
-    "no": "조심 2021서5459",
-    "title": "쟁점매출채권의 대손금 인정여부 등",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=1000100&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-988345",
-    "date": "2023-10-20",
+    "id": "nts-2972199",
+    "date": "2026-06-22",
     "src": "국세청 해석",
-    "no": "서면-2023-법인-1681[법인세과-1606]",
-    "title": "해외매출채권을 대손금으로 손금 산입 가능한지 여부",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000010882",
+    "no": "서면-2026-법인-1038[법인세과-1085]",
+    "title": "물적분할에 따라 분할법인이 취득한 주식의 취득가액 산정방법",
+    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000023736",
     "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "nts-202692",
-    "date": "2023-08-18",
-    "src": "국세청 해석",
-    "no": "서면-2022-법인-5631[법인세과-1316]",
-    "title": "대손금의 손금 산입",
-    "link": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000575177",
-    "summary": "",
-    "impact": ""
-   },
-   {
-    "id": "tt-130330",
-    "date": "2023-08-03",
-    "src": "조세심판원",
-    "no": "조심 2022부7271",
-    "title": "쟁점구상채권의 대손금 귀속시기를 내부위원회 의결에 따라 임의로 처리한 것으로 보아 그 귀속시기를 재조정하여 과세한 처분의 당부",
-    "link": "https://www.law.go.kr/DRF/lawService.do?target=ttSpecialDecc&ID=130330&type=HTML&mobileYn=",
-    "summary": "",
-    "impact": ""
+    "impact": "",
+    "rel": "중",
+    "keys": [
+     "물적분할"
+    ]
    }
   ]
  },
@@ -1547,6 +1329,14 @@
    "target": "10월 지급분",
    "cat": "원천세",
    "shifted": false
+  },
+  {
+   "due": "2026-11-16",
+   "orig": "2026-11-14",
+   "item": "3분기보고서 제출",
+   "target": "3분기",
+   "cat": "공시",
+   "shifted": true
   },
   {
    "due": "2026-11-30",

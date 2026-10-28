@@ -6,7 +6,7 @@ on:
   workflow_dispatch:           # Actions 탭에서 수동 실행 버튼
   push:
     branches: [main]
-    paths: ["site/index.html", "scripts/**", ".github/workflows/**"]
+    paths: ["site/**", "scripts/**", ".github/workflows/**"]
 
 permissions:
   contents: write    # data/summaries.json 캐시 커밋

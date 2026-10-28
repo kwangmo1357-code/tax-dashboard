@@ -9,7 +9,10 @@
 환경변수
   LAW_OC            법제처 Open API 인증값(OC, 보통 가입 이메일의 @ 앞부분)  [필수]
   ANTHROPIC_API_KEY Claude 콘솔에서 발급한 API 키 (없으면 요약 생략)
-  CLAUDE_MODEL      요약에 쓸 모델 (기본 claude-haiku-4-5)
+  CLAUDE_MODEL      요약에 쓸 모델 (기본 claude-haiku-5-5)
+
+python scripts/update_data.py --offline
+  API 호출 없이 기존 site/data.json의 피드를 현재 필터·주제 규칙으로 다시 분류하고 기한만 재계산
 """
 import datetime as dt
 import json
@@ -29,13 +32,54 @@ TODAY = dt.datetime.now(KST).date()
 
 OC = os.environ.get("LAW_OC", "").strip()
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-MODEL = os.environ.get("CLAUDE_MODEL", "").strip() or "claude-haiku-4-5"
+MODEL = os.environ.get("CLAUDE_MODEL", "").strip() or "claude-haiku-5-5"
 
-LAWS = ["법인세법", "소득세법", "부가가치세법", "조세특례제한법",
-        "국세기본법", "주식회사 등의 외부감사에 관한 법률"]
-TOPICS = ["법인세", "부가가치세", "소득세", "감가상각", "접대비", "대손금"]
-PER_SOURCE = 12      # 주제·출처별 조회 건수
+# 회계팀·세무전문가가 상시 추적하는 법령 → 중견 제조 상장사 관점의 확인 포인트
+LAW_FOCUS = {
+    "법인세법": "세율·손금·익금 → 법인세비용, 이연법인세 재측정",
+    "조세특례제한법": "R&D·통합투자·통합고용 세액공제, 최저한세",
+    "부가가치세법": "수출 영세율, 세금계산서, 매입세액 공제",
+    "국세기본법": "경정청구·가산세·제척기간, 세무조사",
+    "국제조세조정에 관한 법률": "이전가격, 국제거래정보 보고, 글로벌최저한세",
+    "지방세법": "법인지방소득세, 사업장 취득세",
+    "소득세법": "임직원 원천징수·연말정산, 지급명세서",
+    "주식회사 등의 외부감사에 관한 법률": "내부회계관리제도, 감사인 지정, 재무제표 제출",
+}
+LAWS = list(LAW_FOCUS)
+
+# 법제처 검색어 (국세청 해석·조세심판원 재결 각각 조회 후 합쳐서 주제별로 재분류)
+QUERIES = ["연구인력개발비", "통합투자세액공제", "통합고용세액공제", "최저한세",
+           "정상가격", "국외특수관계인", "외국납부세액", "영세율", "세금계산서", "매입세액",
+           "감가상각", "내용연수", "재고자산", "기업업무추진비", "접대비", "대손금",
+           "업무무관", "부당행위계산", "합병", "분할"]
+# 주제 탭: 제목에 키워드가 처음 맞는 주제로 분류 (순서가 우선순위)
+TOPIC_RULES = [
+    ("세액공제·감면", ["연구", "인력개발", "통합투자", "투자세액", "통합고용", "고용증대", "세액공제",
+                  "세액감면", "최저한세", "국가전략", "신성장"]),
+    ("감가상각·자산평가", ["감가상각", "내용연수", "손상", "감액", "재고자산", "평가손실",
+                    "영업권", "무형자산", "리스"]),
+    ("부가세·세금계산서", ["부가가치세", "세금계산서", "매입세액", "영세율"]),
+    ("국제조세·이전가격", ["정상가격", "국외특수관계", "이전가격", "조세조약", "고정사업장",
+                    "외국납부", "국제거래", "외국법인", "국외", "해외"]),
+    ("손금·익금 쟁점", ["기업업무추진비", "접대비", "대손", "업무무관", "가지급금", "부당행위",
+                  "특수관계", "인건비", "기부금", "손금", "익금"]),
+    ("조직재편·자본거래", ["합병", "분할", "현물출자", "자기주식", "출자전환", "의제배당"]),
+]
+TOPICS = [t for t, _ in TOPIC_RULES]
+# 법인(중견 제조 상장사) 실무와 거리가 먼 건 제외
+EXCLUDE = re.compile(r"양도소득세|종합소득세|상속세|증여세|개인지방소득세|주택|간이과세|개인사업자|공동사업|"
+                     r"농어|조합원|종교|학교|박물관|공익법인|비영리|성실신고확인|여신전문|금융업|보험업|"
+                     r"의료|어린이집|콘도|이축권|비영업대금")
+# 제조업 관련도 가점 키워드 (2개 이상 '상', 1개 '중', 0개 '하')
+MFG_KEYS = ["제조", "설비", "금형", "공장", "생산", "수출", "원재료", "가공", "재고", "연구", "개발",
+            "투자", "고용", "상시근로자", "중견", "정상가격", "국외특수관계", "기술사용료", "용역제공",
+            "영세율", "감가상각", "내용연수", "감액", "손상", "세금계산서", "매입세액", "외국납부",
+            "경정청구", "재무제표", "K-IFRS", "연결", "물적분할", "합병", "대손", "매출채권",
+            "기업업무추진비", "접대비", "판매부대비용", "반품"]
+PER_SOURCE = 10      # 검색어·출처별 조회 건수
 FEED_LIMIT = 20      # 주제별 표시 건수
+FEED_YEARS = 3       # 최근 N년 건만 표시
+PROMPT_V = 2         # 요약 프롬프트 버전 (바꾸면 캐시를 다시 요약)
 DRF = "https://www.law.go.kr/DRF"
 
 
@@ -94,7 +138,8 @@ def fetch_laws():
                            .get("LawSearch", {}).get("law"))
         except Exception as e:
             errors.append(f"{q}: {e}")
-            rows.append({"name": q, "kind": "-", "pub": "", "eff": "", "status": "조회실패", "note": str(e)[:80]})
+            rows.append({"name": q, "kind": "-", "pub": "", "eff": "", "status": "조회실패", "note": str(e)[:80],
+                         "focus": LAW_FOCUS[q]})
             continue
         for x, is_pending in [(c, False) for c in cur] + [(p, True) for p in pend]:
             name = x.get("법령명한글", "")
@@ -113,6 +158,7 @@ def fetch_laws():
                 "eff": eff,
                 "status": "시행예정" if (is_pending or (eff and eff > TODAY.isoformat())) else "현행",
                 "link": abs_link(x.get("법령상세링크")),
+                "focus": LAW_FOCUS[q],
             })
     seen, uniq = set(), []
     for r in rows:
@@ -170,18 +216,47 @@ def tribunal_gist(item_id):
         return ""
 
 
+def classify(title):
+    for topic, keys in TOPIC_RULES:
+        if any(k in title for k in keys):
+            return topic
+    return ""
+
+
+def mfg_score(title):
+    hits = [k for k in MFG_KEYS if k in title]
+    return ("상" if len(hits) >= 2 else "중" if hits else "하"), hits
+
+
+def build_feed(items):
+    """검색 결과를 중복 제거 → 제외어·기간 필터 → 주제 분류 → 관련도 표시"""
+    min_date = (TODAY - dt.timedelta(days=365 * FEED_YEARS)).isoformat()
+    feed, seen = {t: [] for t in TOPICS}, set()
+    for r in sorted(items, key=lambda r: r["date"], reverse=True):
+        if r["id"] in seen or r["date"] < min_date or EXCLUDE.search(r["title"]):
+            continue
+        topic = classify(r["title"])
+        if not topic:
+            continue
+        seen.add(r["id"])
+        r["rel"], r["keys"] = mfg_score(r["title"])
+        feed[topic].append(r)
+    for t in TOPICS:   # 관련도 상·중을 먼저 채우고 남는 자리에 하
+        keep = [r for r in feed[t] if r["rel"] != "하"][:FEED_LIMIT]
+        keep += [r for r in feed[t] if r["rel"] == "하"][:FEED_LIMIT - len(keep)]
+        feed[t] = sorted(keep, key=lambda r: r["date"], reverse=True)
+    return feed
+
+
 def fetch_feed():
-    feed, errors = {}, []
-    for t in TOPICS:
-        rows = []
+    items, errors = [], []
+    for q in QUERIES:
         for fn in (fetch_nts, fetch_tribunal):
             try:
-                rows += fn(t)
+                items += fn(q)
             except Exception as e:
-                errors.append(f"{t}/{fn.__name__}: {e}")
-        rows.sort(key=lambda r: r["date"], reverse=True)
-        feed[t] = rows[:FEED_LIMIT]
-    return feed, errors
+                errors.append(f"{q}/{fn.__name__}: {e}")
+    return build_feed(items), errors
 
 
 # ---------------------------------------------------------------- Claude 요약
@@ -200,11 +275,14 @@ def claude_summarize(items):
         body = f"요지: {it['gist']}" if it.get("gist") else ""
         lines.append(f"- id={it['id']} | {it['src']} | 제목: {it['title']} {body}")
     prompt = (
-        "너는 한국 상장회사 회계팀의 세무 실무 보조다. 아래 국세청 해석례·조세심판원 재결례 각각에 대해\n"
-        "summary: 쟁점과 결론을 한 문장(60자 이내)으로, 결론을 알 수 없으면 쟁점만\n"
-        "impact: 법인 회계·세무 실무자가 확인할 점 한 문장(50자 이내)\n"
-        "을 작성해. 제목·요지에 없는 사실은 지어내지 말고, 모르면 '원문 확인 필요'라고 써.\n"
-        '출력은 JSON 객체 하나만: {"<id>": {"summary": "...", "impact": "..."}, ...}\n\n'
+        "너는 한국 중견 제조업 상장회사(K-IFRS 적용, 12월 결산, 해외 생산·판매법인 보유) 세무팀의 실무 보조다.\n"
+        "아래 국세청 해석례·조세심판원 재결례 각각에 대해 다음을 작성해.\n"
+        "summary: 쟁점과 결론을 한 문장(60자 이내), 결론을 알 수 없으면 쟁점만\n"
+        "impact: 이 회사가 확인하거나 조치할 점 한 문장(60자 이내)\n"
+        "rel: 이 회사 실무와의 관련도 상/중/하 (개인·특수업종 쟁점이면 하)\n"
+        "area: 법인세비용·이연법인세 / 세무조정 / 세액공제 / 부가세 / 이전가격 / 원천세 / 공시·내부통제 중 하나\n"
+        "제목·요지에 없는 사실은 지어내지 말고, 모르면 '원문 확인 필요'라고 써.\n"
+        '출력은 JSON 객체 하나만: {"<id>": {"summary": "...", "impact": "...", "rel": "상", "area": "..."}, ...}\n\n'
         + "\n".join(lines)
     )
     payload = json.dumps({
@@ -231,7 +309,7 @@ def add_summaries(feed):
         new = {}
         for rows in feed.values():
             for r in rows:
-                if r["id"] not in cache and r["id"] not in new:
+                if cache.get(r["id"], {}).get("v") != PROMPT_V and r["id"] not in new:
                     new[r["id"]] = r
         todo = list(new.values())
         for it in todo:
@@ -243,7 +321,7 @@ def add_summaries(feed):
                 got = claude_summarize(batch)
                 for it in batch:
                     if it["id"] in got:
-                        cache[it["id"]] = {**got[it["id"]], "at": TODAY.isoformat(), "model": MODEL}
+                        cache[it["id"]] = {**got[it["id"]], "at": TODAY.isoformat(), "model": MODEL, "v": PROMPT_V}
             except Exception as e:
                 note = f"AI 요약 일부 실패: {e}"[:120]
         print(f"[claude] 새 요약 대상 {len(todo)}건, 캐시 {len(cache)}건")
@@ -252,6 +330,9 @@ def add_summaries(feed):
             c = cache.get(r["id"], {})
             r["summary"] = c.get("summary", "")
             r["impact"] = c.get("impact", "")
+            if c.get("rel") in ("상", "중", "하"):
+                r["rel"] = c["rel"]
+            r["area"] = c.get("area", "")
             r.pop("gist", None)
     os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
     with open(CACHE_PATH, "w", encoding="utf-8") as f:
@@ -297,6 +378,13 @@ def deadlines(days_ahead=100):
             (dt.date(yy, 3, 31), "법인세 신고·납부", "12월 결산법인", "법인세"),
             (dt.date(yy, 4, 30), "법인지방소득세 신고·납부", "12월 결산법인", "지방세"),
             (dt.date(yy, 8, 31), "법인세 중간예납", "12월 결산법인", "법인세"),
+            (dt.date(yy, 3, 31), "사업보고서 제출", "전년 사업연도", "공시"),
+            (dt.date(yy, 5, 15), "1분기보고서 제출", "1분기", "공시"),
+            (dt.date(yy, 8, 14), "반기보고서 제출", "상반기", "공시"),
+            (dt.date(yy, 11, 14), "3분기보고서 제출", "3분기", "공시"),
+            (dt.date(yy, 3, 31), "국제거래명세서·정상가격 산출방법 신고서", "법인세 신고 시 함께", "국제조세"),
+            (dt.date(yy, 6, 30), "국제거래정보통합보고서", "매출 1천억·국외특수관계거래 500억 초과", "국제조세"),
+            (dt.date(yy, 6, 30), "글로벌최저한세 정보신고", "연결매출 7.5억 유로 이상 그룹", "국제조세"),
         ]
     out = []
     for d, name, target, cat in items:
@@ -309,28 +397,43 @@ def deadlines(days_ahead=100):
 
 
 # ---------------------------------------------------------------- main
+def offline():
+    """API 호출 없이 기존 data.json을 새 규칙으로 재가공 (화면 구조 변경 직후 확인용)"""
+    with open(OUT_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    data["feed"] = build_feed([r for rows in data.get("feed", {}).values() for r in rows])
+    data["topics"] = TOPICS
+    for r in data.get("laws", []):
+        r["focus"] = next((v for k, v in LAW_FOCUS.items() if r["name"].startswith(k)), "")
+    data["deadlines"] = deadlines()
+    return data
+
+
 def main():
-    if not OC:
-        sys.exit("LAW_OC 환경변수가 없습니다 (GitHub Secrets에 LAW_OC 등록 필요)")
-    laws, e1 = fetch_laws()
-    feed, e2 = fetch_feed()
-    ai_note = add_summaries(feed)
-    data = {
-        "generatedAt": dt.datetime.now(KST).isoformat(timespec="minutes"),
-        "today": TODAY.isoformat(),
-        "model": MODEL if API_KEY else "",
-        "aiNote": ai_note,
-        "topics": TOPICS,
-        "laws": laws,
-        "feed": feed,
-        "deadlines": deadlines(),
-        "errors": e1 + e2,
-    }
+    if "--offline" in sys.argv:
+        data = offline()
+    else:
+        if not OC:
+            sys.exit("LAW_OC 환경변수가 없습니다 (GitHub Secrets에 LAW_OC 등록 필요)")
+        laws, e1 = fetch_laws()
+        feed, e2 = fetch_feed()
+        ai_note = add_summaries(feed)
+        data = {
+            "generatedAt": dt.datetime.now(KST).isoformat(timespec="minutes"),
+            "today": TODAY.isoformat(),
+            "model": MODEL if API_KEY else "",
+            "aiNote": ai_note,
+            "topics": TOPICS,
+            "laws": laws,
+            "feed": feed,
+            "deadlines": deadlines(),
+            "errors": e1 + e2,
+        }
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
-    n = sum(len(v) for v in feed.values())
-    print(f"[ok] 법령 {len(laws)}건 · 피드 {n}건 · 기한 {len(data['deadlines'])}건 · 오류 {len(data['errors'])}건")
+    n = sum(len(v) for v in data["feed"].values())
+    print(f"[ok] 법령 {len(data['laws'])}건 · 피드 {n}건 · 기한 {len(data['deadlines'])}건 · 오류 {len(data['errors'])}건")
 
 
 if __name__ == "__main__":
