@@ -1,48 +1,43 @@
-# 회계·세무 대시보드
+# 회계·세무 대시보드 (GitHub Pages + Claude API)
 
-세법 개정 현황·최신 예규/재결례·신고 마감을 한 화면에서 보는 정적 대시보드입니다.
-GitHub Pages로 올리면 누구나 링크로 접속할 수 있습니다.
+매일 아침 GitHub Actions가 법제처 Open API에서 세법 개정·국세청 해석례·조세심판원 재결례를 가져오고,
+**새로 나온 건만** Claude API로 요약해서 GitHub Pages에 배포합니다.
 
-## 구성
+## 구조
 
-| 패널 | 내용 | 데이터 |
+| 파일 | 역할 |
+|---|---|
+| `scripts/update_data.py` | 법제처 조회 → Claude 요약 → 법정기한 계산 → `site/data.json` 생성 (Python 표준 라이브러리만 사용) |
+| `site/index.html` | 화면. `data.json`만 읽음 (API 키 없음) |
+| `data/summaries.json` | 요약 캐시. 이미 요약한 건은 다시 호출하지 않음 |
+| `.github/workflows/update.yml` | 매일 06:47 KST 실행 + 수동 실행 + Pages 배포 |
+
+## 설정 순서
+
+| 단계 | 어디서 | 할 일 |
 |---|---|---|
-| 1. 세법 개정 레이더 | 법인세·소득세·부가세·조특·국기·외감법의 공포일/시행일, 시행예정 개정 | 스냅샷(기본) / 실시간 시도(선택) |
-| 2. 예규·판례 피드 | 국세청 해석 + 조세심판원 재결, 6개 주제 탭 | 스냅샷 |
-| 3. 신고 마감 캘린더 | D-day 계산 | **샘플 — 직접 교체** |
+| 1 | open.law.go.kr | 회원가입 → OPEN API 신청. **OC 값** = 가입 이메일의 @ 앞부분. 활용 신청에서 `법령`, `중앙부처 1차 해석(국세청)`, `특별행정심판(조세심판원)` 체크 |
+| 2 | console.anthropic.com | API Keys → Create Key → `sk-ant-...` 복사. Billing에서 크레딧 충전, Limits에서 월 사용 한도 설정 권장 |
+| 3 | github.com | 새 저장소 생성 (예: `tax-dashboard`) → 이 폴더 전체 업로드 |
+| 4 | 저장소 Settings → Secrets and variables → Actions | **Secrets**: `LAW_OC`, `ANTHROPIC_API_KEY` 등록 / (선택) **Variables**: `CLAUDE_MODEL` |
+| 5 | 저장소 Settings → Pages | Source를 **GitHub Actions**로 선택 |
+| 6 | 저장소 Actions 탭 | "대시보드 데이터 갱신 및 배포" → Run workflow → 완료 후 `https://<아이디>.github.io/tax-dashboard/` 접속 |
 
-- 스냅샷 기준일: **2026-10-28**
-- 파일 1개(`index.html`)로 동작, 외부 라이브러리 없음
+## 비용·보안 메모
 
-## GitHub Pages로 올리기 (처음부터)
+| 항목 | 내용 |
+|---|---|
+| Claude 비용 | 첫 실행 때 약 100건 요약, 이후는 새 건만(보통 하루 0~10건). 기본 모델 `claude-haiku-4-5` 기준 월 몇백 원~몇천 원 수준 |
+| API 키 | GitHub Secrets에만 저장되고, 공개 사이트와 `data.json`에는 들어가지 않음 |
+| OC 값 | 링크를 만들 때 OC 값은 지움 |
+| 공개 범위 | 무료 계정의 Pages는 공개 사이트. 회사 내부 정보(담당자·법인별 기한)는 넣지 말 것 |
+| 휴일 | 주말과 고정 공휴일만 반영. 설·추석·대체공휴일은 `update_data.py`의 `HOLIDAYS_EXTRA`에 추가 |
 
-1. github.com 로그인 → 우측 상단 **+** → **New repository**
-2. Repository name 예: `tax-dashboard` → **Public** 선택 → **Create repository**
-3. 생성된 저장소 화면에서 **uploading an existing file** 클릭
-4. 이 폴더의 `index.html` 을 드래그해 업로드 → **Commit changes**
-5. 상단 **Settings** → 왼쪽 **Pages**
-6. **Source** 를 `Deploy from a branch` → Branch `main` / 폴더 `/ (root)` → **Save**
-7. 1~2분 뒤 같은 화면에 공개 주소가 뜸:
-   `https://<본인아이디>.github.io/tax-dashboard/`
+## 수정 포인트
 
-이 주소를 공유하면 됩니다.
-
-## 내용 갱신 (스냅샷)
-
-- **마감 캘린더(3번):** `index.html` 의 `const SAMPLE = [...]` 를 실제 기한으로 교체.
-  형식: `['YYYY-MM-DD','항목','대상','담당','상태']`
-- **예규·판례(2번):** `const DEC = {...}` 의 각 항목 수정.
-- 수정한 `index.html` 을 저장소에 다시 업로드하면 사이트가 갱신됩니다.
-
-## (선택) 1번 레이더 실시간 전환
-
-`index.html` 안의 `const LAW_OC = "";` 에 법제처 OpenAPI 인증키(OC)를 넣으면,
-페이지를 열 때 law.go.kr 을 직접 호출해 최신 시행일로 갱신을 시도합니다.
-
-- 호출 실패 시(브라우저 CORS 차단 등) 자동으로 스냅샷으로 되돌아갑니다.
-- **공개 저장소에는 키가 그대로 노출됩니다.** 노출을 원치 않으면 비워 두세요.
-- 2번 예규·판례는 다른 사이트(taxlaw.nts.go.kr)라 정적 페이지에서는 실시간 호출 대상이 아닙니다.
-
-## 주의
-
-3번 캘린더는 실제 담당 건이 아닌 **임의의 샘플**입니다. 반드시 실제 기한으로 교체 후 공유하세요.
+| 바꾸고 싶은 것 | 위치 |
+|---|---|
+| 추적 법령 | `update_data.py` → `LAWS` |
+| 피드 주제 탭 | `update_data.py` → `TOPICS` |
+| 실행 시각 | `update.yml` → `cron` (UTC 기준, KST −9시간) |
+| 요약 문구 스타일 | `update_data.py` → `claude_summarize()`의 prompt |
