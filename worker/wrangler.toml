@@ -1,0 +1,15 @@
+# TAX AI 챗봇 서버 함수 설정 (Cloudflare Worker)
+# 배포는 .github/workflows/deploy-worker.yml 이 자동으로 함 — 직접 실행할 필요 없음
+name = "tax-ai"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# 이 주소에서 온 요청만 받음 (쉼표로 여러 개). 로컬 미리보기 주소 포함
+ALLOWED_ORIGINS = "https://kwangmo1357-code.github.io,http://127.0.0.1:8765"
+# 답변 모델과 사고 깊이 (low · medium · high)
+CHAT_MODEL = "claude-opus-5-5"
+CHAT_EFFORT = "high"
+
+# 비밀값(ANTHROPIC_API_KEY, LAW_OC, ACCESS_CODE)은 여기에 쓰지 말 것.
+# GitHub Secrets → 배포 워크플로가 Cloudflare에 비밀값으로 올림

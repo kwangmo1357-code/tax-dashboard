@@ -1,0 +1,40 @@
+name: TAX AI 챗봇 서버 배포
+
+on:
+  workflow_dispatch:           # Actions 탭에서 수동 실행 버튼
+  push:
+    branches: [main]
+    paths: ["worker/**", ".github/workflows/deploy-worker.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 서버 함수 의존성 설치
+        working-directory: worker
+        run: npm install --no-audit --no-fund
+
+      - name: Cloudflare에 배포 (비밀값 함께 등록)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          wranglerVersion: "4.157.0"
+          secrets: |
+            ANTHROPIC_API_KEY
+            LAW_OC
+            ACCESS_CODE
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LAW_OC: ${{ secrets.LAW_OC }}
+          ACCESS_CODE: ${{ secrets.TAX_AI_ACCESS_CODE }}

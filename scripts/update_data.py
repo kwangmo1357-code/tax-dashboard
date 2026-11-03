@@ -119,11 +119,26 @@ def ymd(s):
 def abs_link(link):
     if not link:
         return ""
-    if link.startswith("http"):
-        return link
+    if not link.startswith("http"):
+        link = "https://www.law.go.kr" + link
     # 공개 페이지에 내 OC 값이 노출되지 않도록 제거
     link = re.sub(r"OC=[^&]*&?", "", link)
-    return "https://www.law.go.kr" + link
+    return public_link(link)
+
+
+def public_link(link):
+    """DRF 링크는 OC 없이 열면 '사용자인증에 실패'가 뜨므로 law.go.kr 일반 열람 주소로 바꿈"""
+    if "/DRF/" not in link:
+        return link
+    q = urllib.parse.parse_qs(urllib.parse.urlsplit(link).query)
+    get = lambda k: (q.get(k) or [""])[0]
+    target = get("target")
+    if target in ("law", "eflaw") and get("MST"):
+        url = "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=" + get("MST")
+        return url + ("&efYd=" + get("efYd") if get("efYd") else "")
+    if target == "ttSpecialDecc" and get("ID"):   # trbClsCd 360101 = 조세심판원
+        return "https://www.law.go.kr/LSW/specialDeccInfoP.do?specialDeccSeq=" + get("ID") + "&trbClsCd=360101"
+    return link
 
 
 # ---------------------------------------------------------------- 1. 세법 레이더
@@ -413,7 +428,10 @@ def offline():
     """API 호출 없이 기존 data.json을 새 규칙으로 재가공 (화면 구조 변경 직후 확인용)"""
     with open(OUT_PATH, encoding="utf-8") as f:
         data = json.load(f)
-    data["feed"] = build_feed([r for rows in data.get("feed", {}).values() for r in rows])
+    items = [r for rows in data.get("feed", {}).values() for r in rows]
+    for r in items + data.get("laws", []):
+        r["link"] = public_link(r.get("link", ""))
+    data["feed"] = build_feed(items)
     data["topics"] = TOPICS
     for r in data.get("laws", []):
         r["focus"] = next((v for k, v in LAW_FOCUS.items() if r["name"].startswith(k)), "")

@@ -1,0 +1,9 @@
+{
+  "name": "tax-ai-worker",
+  "private": true,
+  "type": "module",
+  "description": "TAX AI 챗봇 서버 함수 (Cloudflare Worker) — 법제처 원문 검색 후 Claude로 답변",
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.4.0"
+  }
+}

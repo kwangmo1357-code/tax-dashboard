@@ -24,6 +24,28 @@
 | 5 | 저장소 Settings → Pages | Source를 **GitHub Actions**로 선택 |
 | 6 | 저장소 Actions 탭 | "대시보드 데이터 갱신 및 배포" → Run workflow → 완료 후 `https://<아이디>.github.io/tax-dashboard/` 접속 |
 
+## TAX AI 챗봇 설정 (한 번만)
+
+GitHub Pages는 화면만 보여주므로, 질문이 올 때마다 API 키로 Claude를 부르는 **서버 함수**(`worker/`)를 Cloudflare Workers(무료)에 둡니다.
+코드는 이 저장소에서 관리하고, `worker/`를 고쳐 push하면 `.github/workflows/deploy-worker.yml`이 자동 배포합니다.
+
+| 단계 | 어디서 | 할 일 |
+|---|---|---|
+| 1 | dash.cloudflare.com | 무료 가입 → 왼쪽 메뉴 **Workers & Pages** 한 번 열기 (workers.dev 하위 주소 이름 정하기) |
+| 2 | Cloudflare 오른쪽 위 계정 → **My Profile → API Tokens** | **Create Token** → 템플릿 **Edit Cloudflare Workers** → 생성된 토큰 복사 |
+| 3 | Cloudflare 첫 화면 오른쪽 | **Account ID** 복사 |
+| 4 | 저장소 Settings → Secrets and variables → Actions → **Secrets** | `CLOUDFLARE_API_TOKEN`(2), `CLOUDFLARE_ACCOUNT_ID`(3), `TAX_AI_ACCESS_CODE`(팀원끼리 쓸 접속 코드, 직접 정함) 등록. `ANTHROPIC_API_KEY`·`LAW_OC`는 기존 것 그대로 사용 |
+| 5 | 저장소 Actions 탭 | **TAX AI 챗봇 서버 배포** → Run workflow → 로그 끝의 `https://tax-ai.<이름>.workers.dev` 주소 복사 |
+| 6 | 저장소 Settings → Secrets and variables → Actions → **Variables** | `TAX_AI_URL` = 5의 주소 |
+| 7 | 저장소 Actions 탭 | **대시보드 데이터 갱신 및 배포** → Run workflow → 사이트 6번 섹션에서 접속 코드 입력 후 질문 |
+
+| 바꾸고 싶은 것 | 위치 |
+|---|---|
+| 답변 모델·사고 깊이 | `worker/wrangler.toml` → `CHAT_MODEL`(기본 `claude-opus-5-5`), `CHAT_EFFORT` |
+| 요청을 받을 사이트 주소 | `worker/wrangler.toml` → `ALLOWED_ORIGINS` |
+| 답변 원칙·순서 | `worker/src/index.js` → `SYSTEM` |
+| 질문 예시 | `site/index.html` → `AI_EXAMPLES` |
+
 ## 비용·보안 메모
 
 | 항목 | 내용 |
@@ -31,6 +53,8 @@
 | Claude 비용 | 첫 실행 때 약 100건 요약, 이후는 새 건만(보통 하루 0~10건). 기본 모델 `claude-haiku-4-5` 기준 월 몇백 원~몇천 원 수준 |
 | API 키 | GitHub Secrets에만 저장되고, 공개 사이트와 `data.json`에는 들어가지 않음 |
 | OC 값 | 링크를 만들 때 OC 값은 지움 |
+| TAX AI 비용 | 질문 1건에 Claude 2~5회 호출(원문 검색 포함). Opus 5.5 기준 1건에 대략 100~500원(추정, 원문 길이에 따라 다름). 줄이려면 `CHAT_EFFORT`를 `medium`으로. Anthropic 콘솔 Limits에서 월 한도 필수 |
+| TAX AI 보안 | 접속 코드가 맞고 `ALLOWED_ORIGINS` 주소에서 온 요청만 받음. 코드가 새면 `TAX_AI_ACCESS_CODE`를 바꾸고 서버 배포 다시 실행 |
 | 공개 범위 | 무료 계정의 Pages는 공개 사이트. 회사 내부 정보(담당자·법인별 기한)는 넣지 말 것 |
 | 휴일 | 주말과 고정 공휴일만 반영. 설·추석·대체공휴일은 `update_data.py`의 `HOLIDAYS_EXTRA`에 추가 |
 
@@ -42,6 +66,7 @@
 | 검색어 / 주제 탭 분류 | `update_data.py` → `QUERIES` / `TOPIC_RULES` |
 | 제외어 / 제조업 관련도 키워드 | `update_data.py` → `EXCLUDE` / `MFG_KEYS` |
 | 영향 분석 카드 | `site/impact.json` → `items` (`basis`: 확인 / 확인 필요 / 분석) |
+| XBRL 주석 작성 점검 | `site/xbrl.json` → `rules`(핵심 기준) / `groups[].items`(체크리스트, `id`는 바꾸지 말 것 — 체크 상태가 id로 저장됨, `page`는 가이드 본문 쪽수) |
 | 화면만 다시 확인 (API 호출 없이 재분류) | `python scripts/update_data.py --offline` |
 | 실행 시각 | `update.yml` → `cron` (UTC 기준, KST −9시간) |
 | 요약 문구 스타일 | `update_data.py` → `claude_summarize()`의 prompt |

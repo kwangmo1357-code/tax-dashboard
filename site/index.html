@@ -94,6 +94,46 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 .calc .out div { border-left: 3px solid var(--line); padding-left: 8px; }
 .calc .out .l { font-size: 11px; color: var(--muted); } .calc .out .v { font-size: 16px; font-weight: 650; font-variant-numeric: tabular-nums; }
 .calc .hint { font-size: 11px; color: var(--faint); margin-top: 8px; }
+/* XBRL 점검 */
+.chk { list-style: none; margin: 0; padding: 0; }
+.chk li { display: flex; gap: 9px; align-items: flex-start; padding: 7px 11px; border-bottom: 1px solid var(--line2); }
+.chk li:last-child { border-bottom: none; }
+.chk li:hover { background: var(--hover); }
+.chk input { margin: 2px 0 0; flex: none; }
+.chk label { flex: 1; cursor: pointer; }
+.chk li.done label { color: var(--faint); text-decoration: line-through; }
+.chk .pg { flex: none; font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.tab.reset { margin-left: auto; }
+
+/* TAX AI */
+.ai-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px; }
+.ai-box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 11px 13px; }
+.ai-box h3 { font-size: 13px; margin: 0 0 8px; }
+.ai-log { display: flex; flex-direction: column; gap: 9px; max-height: 560px; overflow-y: auto; margin-bottom: 10px; }
+.ai-log .empty { color: var(--faint); font-size: 12px; }
+.msg-q { align-self: flex-end; max-width: 85%; background: var(--ai-bg); color: var(--text); padding: 7px 11px; border-radius: 8px; white-space: pre-wrap; }
+.msg-a { border: 1px solid var(--line2); border-radius: 6px; padding: 9px 12px; }
+.msg-a h4 { font-size: 13.5px; margin: 0 0 6px; }
+.msg-a ol { margin: 0; padding-left: 19px; } .msg-a li { margin: 3px 0; }
+.msg-a .st { font-weight: 600; }
+.msg-a .sub { font-size: 11.5px; color: var(--muted); margin-top: 7px; }
+.msg-a .err { padding: 0; }
+.ai-in { display: flex; gap: 6px; }
+.ai-in textarea { flex: 1; min-height: 54px; resize: vertical; padding: 6px 8px; font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 4px; }
+.ai-in button, .ai-code button { padding: 0 14px; font: inherit; font-size: 12.5px; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--text); background: var(--text); color: var(--bg); }
+.ai-in button:disabled { opacity: .5; cursor: default; }
+.ai-code { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 9px; flex-wrap: wrap; }
+.ai-code input { width: 150px; padding: 4px 7px; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; }
+.ai-code button { padding: 4px 10px; }
+.chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.chips .tab { font-size: 11.5px; }
+.src-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.src-list li { border-bottom: 1px solid var(--line2); padding-bottom: 7px; font-size: 12px; }
+.src-list li:last-child { border-bottom: none; }
+.src-list .kw { display: block; margin-top: 1px; }
+@media (max-width: 760px) { .ai-grid { grid-template-columns: 1fr; } }
 @media (max-width: 420px) { .cards { grid-template-columns: 1fr; } .calc input { width: 120px; } }
 </style>
 </head>
@@ -160,7 +200,35 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     </table></div>
   </section>
 
-  <div class="foot" id="foot">데이터 출처: 법제처 국가법령정보 공동활용 Open API · 요약: Anthropic Claude API · 매일 GitHub Actions로 자동 갱신 · 영향 분석(impact.json)은 수기 관리 — 세무 자문을 대체하지 않습니다.</div>
+  <section>
+    <h2>5. XBRL 주석 작성 점검</h2>
+    <p class="note" id="xbrl-note">불러오는 중…</p>
+    <div class="kpis" id="xbrl-rules" style="margin-bottom:12px"></div>
+    <div class="tabs" id="xbrl-tabs"></div>
+    <div class="tbl"><ul class="chk" id="xbrl-list"><li class="loading">불러오는 중…</li></ul></div>
+  </section>
+
+  <section>
+    <h2>6. TAX AI <span class="badge ai">AI 분석</span></h2>
+    <p class="note">질문하면 법제처 원문(조문·국세청 해석례·조세심판원 재결례)을 먼저 찾아 읽고, 그 원문만 근거로 절차·서식·근거를 답합니다 · 원문 근거가 없으면 답하지 않습니다 · 답변은 검토 보조용이며 최종 판단은 세무 담당자·세무대리인이 확인하세요 · 회사 내부 자료는 입력하지 마세요</p>
+    <div class="ai-grid">
+      <div class="ai-box">
+        <div class="ai-code" id="ai-code"></div>
+        <div class="chips" id="ai-chips"></div>
+        <div class="ai-log" id="ai-log"><div class="empty">질문 예시를 누르거나 직접 입력하세요. 한 번 답하는 데 30초~1분 걸립니다.</div></div>
+        <form class="ai-in" id="ai-form">
+          <textarea id="ai-q" maxlength="1000" placeholder="질문을 입력하세요 (Ctrl+Enter로 보내기)"></textarea>
+          <button type="submit" id="ai-send">보내기</button>
+        </form>
+      </div>
+      <div class="ai-box">
+        <h3>참조 근거</h3>
+        <ul class="src-list" id="ai-src"><li class="kw">답변에 쓰인 조문·예규·심판례가 여기에 표시됩니다.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot" id="foot">데이터 출처: 법제처 국가법령정보 공동활용 Open API · 요약: Anthropic Claude API · 매일 GitHub Actions로 자동 갱신 · 영향 분석(impact.json)·XBRL 점검(xbrl.json)은 수기 관리 — 세무 자문을 대체하지 않습니다.</div>
 </div>
 
 <script>
@@ -309,7 +377,129 @@ function renderCal() {
   }).join('');
 }
 
+/* ---------- 5. XBRL 점검 ---------- */
+// 체크 상태는 이 브라우저에만 저장 (공개 사이트라 서버로 보내지 않음)
+let XBRL = null, xbrlGroup = store.get('dash_xbrl_group');
+const xbrlDone = new Set((store.get('dash_xbrl_done') || '').split(',').filter(Boolean));
+const saveDone = () => store.set('dash_xbrl_done', [...xbrlDone].join(','));
+function renderXbrl() {
+  if (!XBRL) return;
+  const names = XBRL.groups.map(g => g.name);
+  if (!names.includes(xbrlGroup)) xbrlGroup = names[0];
+  const all = XBRL.groups.flatMap(g => g.items);
+  document.getElementById('xbrl-note').textContent = '출처: ' + XBRL.source + ' · ' + XBRL.pageNote +
+    ' · 점검 ' + all.filter(x => xbrlDone.has(x.id)).length + '/' + all.length + ' (체크는 이 브라우저에만 저장)';
+  document.getElementById('xbrl-rules').innerHTML = XBRL.rules.map(r =>
+    '<div class="kpi"><div class="l">' + esc(r.label) + '</div><div class="v">' + esc(r.value) + '</div><div class="s">' + esc(r.note) + ' · p.' + esc(r.page) + '</div></div>').join('');
+  const tEl = document.getElementById('xbrl-tabs');
+  tEl.innerHTML = XBRL.groups.map(g => {
+    const n = g.items.filter(x => xbrlDone.has(x.id)).length;
+    return '<button class="tab' + (g.name === xbrlGroup ? ' on' : '') + '" data-g="' + esc(g.name) + '">' + esc(g.name) +
+      ' <span style="opacity:.6">' + n + '/' + g.items.length + '</span></button>';
+  }).join('') + '<button class="tab reset" id="xbrl-reset">이 탭 체크 해제</button>';
+  tEl.querySelectorAll('.tab[data-g]').forEach(b => b.onclick = () => { xbrlGroup = b.dataset.g; store.set('dash_xbrl_group', xbrlGroup); renderXbrl(); });
+  const items = XBRL.groups.find(g => g.name === xbrlGroup).items;
+  document.getElementById('xbrl-reset').onclick = () => { items.forEach(x => xbrlDone.delete(x.id)); saveDone(); renderXbrl(); };
+  const list = document.getElementById('xbrl-list');
+  list.innerHTML = items.map(x => {
+    const on = xbrlDone.has(x.id);
+    return '<li' + (on ? ' class="done"' : '') + '><input type="checkbox" id="x-' + esc(x.id) + '" data-id="' + esc(x.id) + '"' + (on ? ' checked' : '') + '>' +
+      '<label for="x-' + esc(x.id) + '">' + esc(x.text) + '</label><span class="pg">p.' + esc(x.page) + '</span></li>';
+  }).join('');
+  list.querySelectorAll('input').forEach(c => c.onchange = () => {
+    if (c.checked) xbrlDone.add(c.dataset.id); else xbrlDone.delete(c.dataset.id);
+    saveDone(); renderXbrl();
+  });
+}
+
+/* ---------- 6. TAX AI ---------- */
+// 서버 주소는 config.json(배포 시 저장소 Variables의 TAX_AI_URL로 생성), 접속 코드는 이 브라우저에만 저장
+const AI_EXAMPLES = [
+  '올해 신규 설비 투자분으로 통합투자세액공제를 받으려면 무엇을 준비하나요?',
+  '연구전담부서 연구원이 다른 업무를 겸하면 연구·인력개발비 세액공제 인건비는 어떻게 되나요?',
+  '기업업무추진비 한도초과액 계산 절차를 알려주세요'
+];
+let aiUrl = '', aiBusy = false;
+const aiHistory = [];
+function renderAiCode() {
+  const el = document.getElementById('ai-code');
+  if (!aiUrl) {
+    el.innerHTML = '<span class="badge b-warn">서버 미설정</span> 챗봇 서버 주소(TAX_AI_URL)가 아직 등록되지 않았습니다 — README의 "TAX AI 챗봇 설정" 참고';
+    return;
+  }
+  const has = !!store.get('dash_taxai_code');
+  el.innerHTML = has
+    ? '<span class="badge b-now">접속 코드 저장됨</span><button type="button" id="ai-code-clear">코드 지우기</button>'
+    : '<label>접속 코드 <input type="password" id="ai-code-in" autocomplete="off"></label><button type="button" id="ai-code-save">저장</button><span>팀에서 받은 코드를 입력하세요</span>';
+  if (has) document.getElementById('ai-code-clear').onclick = () => { store.set('dash_taxai_code', ''); renderAiCode(); };
+  else document.getElementById('ai-code-save').onclick = () => {
+    const v = document.getElementById('ai-code-in').value.trim();
+    if (v) { store.set('dash_taxai_code', v); renderAiCode(); }
+  };
+}
+function aiAdd(html, cls) {
+  const log = document.getElementById('ai-log');
+  const empty = log.querySelector('.empty'); if (empty) empty.remove();
+  const div = document.createElement('div'); div.className = cls; div.innerHTML = html;
+  log.appendChild(div); log.scrollTop = log.scrollHeight;
+  return div;
+}
+function renderAiAnswer(d) {
+  const a = d.answer || {};
+  const grounded = d.grounded;
+  let html = '<h4>' + (grounded ? '' : '<span class="badge b-warn">근거 없음</span> ') + esc(a.title || '') + '</h4>';
+  if (a.steps && a.steps.length) html += '<ol>' + a.steps.map(s => '<li><span class="st">' + esc(s.title) + '</span> ' + esc(s.detail) + '</li>').join('') + '</ol>';
+  if (a.forms && a.forms.length) html += '<div class="sub"><b>서식</b> · ' + a.forms.map(esc).join(' · ') + '</div>';
+  if (a.cautions && a.cautions.length) html += '<div class="sub"><b>확인할 점</b> · ' + a.cautions.map(esc).join(' · ') + '</div>';
+  if (d.sources && d.sources.length) html += '<div class="sub"><b>근거</b> · ' + d.sources.map(s => link(s.title, s.link)).join(' · ') + '</div>';
+  if (d.model) html += '<div class="sub kw">' + esc(d.model) + ' · 검토 보조용</div>';
+  return html;
+}
+function renderAiSources(sources) {
+  const el = document.getElementById('ai-src');
+  if (!sources || !sources.length) { el.innerHTML = '<li class="kw">이 답변에 쓰인 원문 근거가 없습니다.</li>'; return; }
+  const cls = { '조문': 'b-now', '예규': 'ai', '심판례': 'b-soon' };
+  el.innerHTML = sources.map(s => '<li><span class="badge ' + (cls[s.type] || 'b-mute') + '">' + esc(s.type) + '</span> ' + link(s.title, s.link) +
+    (s.no || s.date ? '<span class="kw">' + esc([s.no, s.date].filter(Boolean).join(' · ')) + '</span>' : '') + '</li>').join('');
+}
+async function askAi(q) {
+  q = q.trim();
+  if (!q || aiBusy) return;
+  const code = store.get('dash_taxai_code');
+  if (!aiUrl) { aiAdd('<div class="err">챗봇 서버가 아직 설정되지 않았습니다.</div>', 'msg-a'); return; }
+  if (!code) { aiAdd('<div class="err">먼저 접속 코드를 입력·저장하세요.</div>', 'msg-a'); return; }
+  aiBusy = true; document.getElementById('ai-send').disabled = true;
+  aiAdd(esc(q), 'msg-q');
+  const wait = aiAdd('<span class="kw">원문을 찾아 읽는 중… (30초~1분)</span>', 'msg-a');
+  try {
+    const r = await fetch(aiUrl, { method: 'POST', headers: { 'content-type': 'application/json', 'x-access-code': code },
+      body: JSON.stringify({ question: q, history: aiHistory.slice(-6) }) });
+    const d = await r.json().catch(() => ({ error: '응답을 읽지 못했습니다 (' + r.status + ')' }));
+    if (r.status === 401) { store.set('dash_taxai_code', ''); renderAiCode(); }
+    if (!r.ok || d.error) throw new Error(d.error || r.status);
+    wait.innerHTML = renderAiAnswer(d);
+    renderAiSources(d.sources);
+    if (d.grounded) aiHistory.push({ q, a: d.answer.title + '\n' + d.answer.steps.map((s, i) => (i + 1) + '. ' + s.title + ' ' + s.detail).join('\n') });
+  } catch (e) {
+    wait.innerHTML = '<div class="err">' + esc(e.message) + '</div>';
+  } finally {
+    aiBusy = false; document.getElementById('ai-send').disabled = false;
+  }
+}
+function initAi() {
+  document.getElementById('ai-chips').innerHTML = AI_EXAMPLES.map((q, i) => '<button type="button" class="tab" data-i="' + i + '">' + esc(q) + '</button>').join('');
+  document.querySelectorAll('#ai-chips .tab').forEach(b => b.onclick = () => askAi(AI_EXAMPLES[b.dataset.i]));
+  const qEl = document.getElementById('ai-q');
+  document.getElementById('ai-form').onsubmit = e => { e.preventDefault(); const q = qEl.value; qEl.value = ''; askAi(q); };
+  qEl.onkeydown = e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) document.getElementById('ai-form').requestSubmit(); };
+  fetch('config.json?v=' + Date.now()).then(r => r.ok ? r.json() : {}).catch(() => ({})).then(c => {
+    aiUrl = (c && c.taxAiUrl) || store.get('dash_taxai_url') || '';
+    renderAiCode();
+  });
+}
+
 /* ---------- load ---------- */
+initAi();
 ['c-base', 'c-tmp'].forEach(id => document.getElementById(id).oninput = renderCalc);
 renderCalc();
 
@@ -317,6 +507,12 @@ fetch('impact.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.st
   IMPACT = d; renderImpact(); renderKpis();
 }).catch(e => {
   document.getElementById('cards').innerHTML = '<div class="err">impact.json을 불러오지 못했습니다 (' + esc(e.message) + ')</div>';
+});
+
+fetch('xbrl.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+  XBRL = d; renderXbrl();
+}).catch(e => {
+  document.getElementById('xbrl-list').innerHTML = '<li class="err">xbrl.json을 불러오지 못했습니다 (' + esc(e.message) + ')</li>';
 });
 
 fetch('data.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
