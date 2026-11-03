@@ -3,34 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>회계·세무 대시보드</title>
+<title>세무·회계 포털</title>
 <style>
+/* 색상: 사내 그룹웨어 화면 색 (상단 청록 #057d98 · 강조 #006978 · 링크 #0086cd · 배경 #f6f8fb · 알림 #ff606d) */
 :root {
-  --bg: #fbfbfa; --surface: #ffffff; --head: #f3f3f0; --line: #e4e4e0; --line2: #f0f0ec;
-  --text: #1c1c1a; --muted: #6b6b66; --faint: #8a8a84; --link: #1a5490; --hover: #fafaf8;
-  --ok-bg: #e8f0e8; --ok: #3d6b3d; --warn-bg: #fbe4e4; --warn: #9b2c2c;
-  --soon-bg: #fdf0d5; --soon: #8a5a00; --ai-bg: #eef2fb; --ai: #2c4a8a;
-  --mute-bg: #efefeb; --hi: #9b2c2c; --mid: #8a5a00; --lo: #6b6b66;
+  --bg: #f6f8fb; --surface: #ffffff; --head: #edf0f5; --line: #dde2e8; --line2: #edf0f5;
+  --text: #313232; --muted: #66707a; --faint: #949597; --link: #0086cd; --hover: #f3f6f9;
+  --brand: #057d98; --brand-dk: #006978; --on-brand: #ffffff; --alert: #ff606d;
+  --ok-bg: #e3f2ec; --ok: #2f6e55; --warn-bg: #ffe7e9; --warn: #c3303e;
+  --soon-bg: #fdf0d5; --soon: #8a5a00; --ai-bg: #e2f1f5; --ai: #006978;
+  --mute-bg: #edf0f5; --hi: #c3303e; --mid: #8a5a00; --lo: #66707a;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #161615; --surface: #1e1e1c; --head: #262624; --line: #33332f; --line2: #2a2a27;
-    --text: #e8e8e3; --muted: #a3a39c; --faint: #85857e; --link: #8db4e8; --hover: #242422;
-    --ok-bg: #22362a; --ok: #9fd0a8; --warn-bg: #3d2224; --warn: #f0a3a3;
-    --soon-bg: #3a2f17; --soon: #e8c27a; --ai-bg: #1f2a40; --ai: #a9c0f0;
-    --mute-bg: #2a2a27; --hi: #f0a3a3; --mid: #e8c27a; --lo: #a3a39c;
+    --bg: #12181b; --surface: #1a2226; --head: #222c31; --line: #2f3a40; --line2: #263035;
+    --text: #e6eaec; --muted: #a2acb1; --faint: #7f8a90; --link: #5cb8ec; --hover: #20292d;
+    --brand: #04677e; --brand-dk: #5cc3d6; --on-brand: #ffffff; --alert: #ff7d88;
+    --ok-bg: #1f3a2f; --ok: #9fd6bd; --warn-bg: #41232a; --warn: #ff9aa3;
+    --soon-bg: #3a2f17; --soon: #e8c27a; --ai-bg: #16343c; --ai: #8fd3e2;
+    --mute-bg: #263035; --hi: #ff9aa3; --mid: #e8c27a; --lo: #a2acb1;
     color-scheme: dark;
   }
 }
 * { box-sizing: border-box; }
-body { margin: 0; padding: 20px 16px 40px; background: var(--bg); color: var(--text);
+body { margin: 0; background: var(--bg); color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
   font-size: 13px; line-height: 1.5; }
-.wrap { max-width: 1180px; margin: 0 auto; }
-h1 { font-size: 19px; margin: 0 0 4px; }
-.sub { color: var(--muted); font-size: 12px; margin-bottom: 18px; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-bottom: 26px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 20px 16px 40px; }
+
+/* 상단 메뉴 */
+.top { background: var(--brand); color: var(--on-brand); position: sticky; top: 0; z-index: 10; }
+.top-in { max-width: 1240px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 14px; min-height: 46px; }
+.logo { color: var(--on-brand); font-weight: 700; font-size: 15px; white-space: nowrap; }
+.logo:hover { text-decoration: none; }
+.nav { display: flex; gap: 2px; overflow-x: auto; flex: 1; align-self: stretch; align-items: flex-end; scrollbar-width: none; }
+.nav a { color: var(--on-brand); padding: 9px 14px; border-radius: 6px 6px 0 0; white-space: nowrap; font-size: 13px; opacity: .92; }
+.nav a:hover { text-decoration: none; background: rgba(255,255,255,.12); opacity: 1; }
+.nav a.on { background: var(--bg); color: var(--text); font-weight: 600; opacity: 1; }
+.stamp { font-size: 11.5px; white-space: nowrap; opacity: .9; }
+.page { display: none; } .page.on { display: block; }
+.page > h2 { font-size: 16px; margin: 0 0 4px; display: inline-block; padding-bottom: 4px; border-bottom: 2px solid var(--brand-dk); }
+
+/* 홈 위젯 */
+.home-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.wg { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; min-height: 200px; min-width: 0; }
+.wg.w2 { grid-column: span 2; } .wg.w3 { grid-column: span 3; min-height: 0; }
+.wg-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.wg-h h3 { font-size: 13.5px; margin: 0; padding-bottom: 4px; border-bottom: 2px solid var(--brand-dk); }
+.wg-h a { font-size: 11.5px; color: var(--muted); }
+.wl { list-style: none; margin: 0; padding: 0; }
+.wl li { display: flex; gap: 8px; align-items: center; padding: 6px 2px; border-bottom: 1px solid var(--line2); font-size: 12.5px; }
+.wl li:last-child { border-bottom: none; }
+.wl .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wl .r { flex: none; font-size: 11.5px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.bar { height: 6px; background: var(--line2); border-radius: 3px; overflow: hidden; } .bar i { display: block; height: 100%; background: var(--brand); }
+.xg { display: grid; grid-template-columns: 1fr auto; gap: 3px 8px; font-size: 12px; align-items: center; margin-top: 8px; }
+.xg .bar { grid-column: span 2; margin-bottom: 4px; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa textarea { min-height: 64px; resize: none; padding: 7px 9px; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+.qa .q { text-align: left; font: inherit; font-size: 12px; color: var(--link); background: none; border: none; padding: 3px 0; cursor: pointer; }
+.qa .q:hover { text-decoration: underline; }
+.btn { padding: 6px 14px; font: inherit; font-size: 12.5px; border-radius: 6px; cursor: pointer; border: 1px solid var(--brand); background: var(--brand); color: var(--on-brand); }
+.links { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+.links a { display: block; background: var(--head); border-radius: 6px; padding: 10px; text-align: center; color: var(--text); font-size: 12.5px; }
+.links a span { display: block; font-size: 11px; color: var(--faint); }
+.links a:hover { text-decoration: none; background: var(--ai-bg); color: var(--ai); }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11.5px; gap: 2px 0; }
+.cal .dw { color: var(--faint); padding-bottom: 3px; }
+.cal .d { padding: 3px 0; position: relative; font-variant-numeric: tabular-nums; }
+.cal .d.today b { background: var(--alert); color: #fff; border-radius: 50%; display: inline-block; width: 21px; line-height: 21px; }
+.cal .d.has::after { content: ""; position: absolute; left: 50%; bottom: -1px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--alert); }
+.cal .d.sun { color: var(--warn); } .cal .d.out { visibility: hidden; }
+@media (max-width: 960px) { .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wg.w3 { grid-column: span 2; } }
+@media (max-width: 640px) { .home-grid { grid-template-columns: minmax(0, 1fr); } .wg.w2, .wg.w3 { grid-column: auto; } .stamp { display: none; } }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-bottom: 14px; }
 .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; }
 .kpi .l { color: var(--muted); font-size: 11.5px; }
 .kpi .v { font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
@@ -63,7 +110,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 .tabs { display: flex; gap: 5px; margin-bottom: 9px; flex-wrap: wrap; }
 .tab { padding: 4px 11px; border: 1px solid var(--line); background: var(--surface); color: var(--muted);
   border-radius: 5px; cursor: pointer; font-size: 12px; font-family: inherit; }
-.tab.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+.tab.on { background: var(--brand-dk); color: var(--surface); border-color: var(--brand-dk); }
 .filters { display: flex; gap: 12px; margin-bottom: 9px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 12px; }
 .loading, .err { padding: 14px 9px; font-size: 12px; color: var(--faint); } .err { color: var(--warn); }
 .foot { color: var(--faint); font-size: 11px; border-top: 1px solid var(--line); padding-top: 12px; }
@@ -122,7 +169,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 .ai-in textarea { flex: 1; min-height: 54px; resize: vertical; padding: 6px 8px; font: inherit; color: var(--text); background: var(--bg);
   border: 1px solid var(--line); border-radius: 4px; }
 .ai-in button, .ai-code button { padding: 0 14px; font: inherit; font-size: 12.5px; border-radius: 4px; cursor: pointer;
-  border: 1px solid var(--text); background: var(--text); color: var(--bg); }
+  border: 1px solid var(--brand); background: var(--brand); color: var(--on-brand); }
 .ai-in button:disabled { opacity: .5; cursor: default; }
 .ai-code { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 9px; flex-wrap: wrap; }
 .ai-code input { width: 150px; padding: 4px 7px; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; }
@@ -138,14 +185,47 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 </style>
 </head>
 <body>
+<header class="top"><div class="top-in">
+  <a class="logo" href="#home">세무·회계 포털</a>
+  <nav class="nav" id="nav">
+    <a href="#home">홈</a>
+    <a href="#laws">세법 개정</a>
+    <a href="#rulings">예규·판례</a>
+    <a href="#impact">영향 분석</a>
+    <a href="#deadlines">신고 기한</a>
+    <a href="#xbrl">XBRL 점검</a>
+    <a href="#ai">TAX AI</a>
+  </nav>
+  <span class="stamp" id="stamp">불러오는 중…</span>
+</div></header>
+
 <div class="wrap">
-  <h1>회계·세무 대시보드</h1>
-  <div class="sub" id="stamp">불러오는 중…</div>
+  <section class="page" id="p-home">
+    <div class="kpis" id="kpis"></div>
+    <div class="home-grid">
+      <div class="wg"><div class="wg-h"><h3>다가오는 기한</h3><a href="#deadlines">전체 보기 ›</a></div><ul class="wl" id="w-due"><li class="kw">불러오는 중…</li></ul></div>
+      <div class="wg"><div class="wg-h"><h3>시행예정 법령</h3><a href="#laws">전체 보기 ›</a></div><ul class="wl" id="w-laws"><li class="kw">불러오는 중…</li></ul></div>
+      <div class="wg"><div class="wg-h"><h3>TAX AI 빠른 질문</h3><a href="#ai">TAX AI ›</a></div>
+        <form class="qa" id="w-ai"><textarea id="w-ai-q" maxlength="1000" placeholder="세법·공제·서식 질문을 입력하세요"></textarea>
+          <div id="w-ai-ex"></div><button type="submit" class="btn">질문하기</button></form></div>
+      <div class="wg w2"><div class="wg-h"><h3>최근 예규·판례 <span class="kw">관련도 상</span></h3><a href="#rulings">전체 보기 ›</a></div><ul class="wl" id="w-rul"><li class="kw">불러오는 중…</li></ul></div>
+      <div class="wg"><div class="wg-h"><h3 id="w-cal-t">이번 달 기한</h3><a href="#deadlines">전체 보기 ›</a></div><div class="cal" id="w-cal"></div><div class="kw" id="w-cal-n" style="margin-top:8px"></div></div>
+      <div class="wg w2"><div class="wg-h"><h3>우리 회사 영향 큰 항목</h3><a href="#impact">전체 보기 ›</a></div><ul class="wl" id="w-imp"><li class="kw">불러오는 중…</li></ul></div>
+      <div class="wg"><div class="wg-h"><h3>XBRL 점검 진행률</h3><a href="#xbrl">점검하기 ›</a></div><div id="w-xbrl" class="kw">불러오는 중…</div></div>
+      <div class="wg w3"><div class="wg-h"><h3>바로가기</h3></div>
+        <div class="links">
+          <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스<span>신고·납부</span></a>
+          <a href="https://www.wetax.go.kr" target="_blank" rel="noopener">위택스<span>지방세</span></a>
+          <a href="https://dart.fss.or.kr" target="_blank" rel="noopener">DART<span>전자공시</span></a>
+          <a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터<span>법령 원문</span></a>
+          <a href="https://taxlaw.nts.go.kr" target="_blank" rel="noopener">국세법령정보시스템<span>예규·해석</span></a>
+          <a href="https://www.tt.go.kr" target="_blank" rel="noopener">조세심판원<span>심판 결정</span></a>
+        </div></div>
+    </div>
+  </section>
 
-  <div class="kpis" id="kpis"></div>
-
-  <section>
-    <h2>1. 중견 제조 상장사 영향 분석</h2>
+  <section class="page" id="p-impact">
+    <h2>중견 제조 상장사 영향 분석</h2>
     <p class="note">회계팀·세무전문가가 상시 점검하는 항목만 추렸습니다. 근거 표시: <b>확인</b> 원문·복수 자료 교차 확인 · <b>확인 필요</b> 부칙·원문 재확인 후 사용 · <b>분석</b> 확정 조문·최근 사례를 바탕으로 한 자체 분석</p>
     <div class="profile" id="profile"></div>
 
@@ -163,8 +243,8 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     <div class="cards" id="cards"><div class="loading">불러오는 중…</div></div>
   </section>
 
-  <section>
-    <h2>2. 세법 개정 레이더</h2>
+  <section class="page" id="p-laws">
+    <h2>세법 개정 레이더</h2>
     <p class="note">법인세·조특·부가세·국기·국조·지방세·소득세(원천)·외감법만 추적 · 시행일이 오늘 이후면 <b>시행예정</b> · <b>관점</b>은 중견 제조 상장사가 해당 법령에서 확인할 부분</p>
     <div class="filters">
       <label><input type="checkbox" id="only-pending"> 시행예정만 보기</label>
@@ -177,8 +257,8 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     </table></div>
   </section>
 
-  <section>
-    <h2>3. 실무 주제별 예규·판례 <span class="badge ai">AI 분석</span></h2>
+  <section class="page" id="p-rulings">
+    <h2>실무 주제별 예규·판례 <span class="badge ai">AI 분석</span></h2>
     <p class="note">국세청 법령해석 + 조세심판원 재결례, 최근 3년 · 개인·특수업종(양도세·주택·금융업 등) 건은 제외 · <b>관련도</b>는 중견 제조 상장사 기준(키워드 규칙 → AI 판정 시 덮어씀) · AI 요약은 제목·재결요지만 보고 작성한 참고용이니 원문을 확인하세요.</p>
     <div class="tabs" id="tabs"></div>
     <div class="filters">
@@ -191,8 +271,8 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     </table></div>
   </section>
 
-  <section>
-    <h2>4. 신고·납부·공시 법정기한 (향후 100일)</h2>
+  <section class="page" id="p-deadlines">
+    <h2>신고·납부·공시 법정기한 (향후 100일)</h2>
     <p class="note">12월 결산 상장법인 일반 기한 자동 계산 · 주말·고정 공휴일만 다음 영업일로 조정(설·추석·대체공휴일 미반영) · 국제조세 항목은 해당 요건 충족 법인만</p>
     <div class="tbl"><table>
       <thead><tr><th>기한</th><th class="num">D-day</th><th>구분</th><th>항목</th><th>대상</th><th>비고</th></tr></thead>
@@ -200,16 +280,16 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     </table></div>
   </section>
 
-  <section>
-    <h2>5. XBRL 주석 작성 점검</h2>
+  <section class="page" id="p-xbrl">
+    <h2>XBRL 주석 작성 점검</h2>
     <p class="note" id="xbrl-note">불러오는 중…</p>
     <div class="kpis" id="xbrl-rules" style="margin-bottom:12px"></div>
     <div class="tabs" id="xbrl-tabs"></div>
     <div class="tbl"><ul class="chk" id="xbrl-list"><li class="loading">불러오는 중…</li></ul></div>
   </section>
 
-  <section>
-    <h2>6. TAX AI <span class="badge ai">AI 분석</span></h2>
+  <section class="page" id="p-ai">
+    <h2>TAX AI <span class="badge ai">AI 분석</span></h2>
     <p class="note">질문하면 법제처 원문(조문·국세청 해석례·조세심판원 재결례)을 먼저 찾아 읽고, 그 원문만 근거로 절차·서식·근거를 답합니다 · 원문 근거가 없으면 답하지 않습니다 · 답변은 검토 보조용이며 최종 판단은 세무 담당자·세무대리인이 확인하세요 · 회사 내부 자료는 입력하지 마세요</p>
     <div class="ai-grid">
       <div class="ai-box">
@@ -410,6 +490,7 @@ function renderXbrl() {
     if (c.checked) xbrlDone.add(c.dataset.id); else xbrlDone.delete(c.dataset.id);
     saveDone(); renderXbrl();
   });
+  renderHomeXbrl();
 }
 
 /* ---------- 6. TAX AI ---------- */
@@ -498,13 +579,96 @@ function initAi() {
   });
 }
 
+/* ---------- 메뉴 이동 (주소 끝 #이름으로 화면 전환) ---------- */
+const PAGES = ['home', 'laws', 'rulings', 'impact', 'deadlines', 'xbrl', 'ai'];
+function showPage() {
+  const p = location.hash.slice(1);
+  const page = PAGES.includes(p) ? p : 'home';
+  document.querySelectorAll('.page').forEach(s => s.classList.toggle('on', s.id === 'p-' + page));
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + page));
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 홈 위젯 ---------- */
+const ddBadge = n => '<span class="badge ' + (n <= 10 ? 'b-warn' : n <= 30 ? 'b-soon' : 'b-mute') + '">' + ddLabel(n) + '</span>';
+const emptyLi = t => '<li class="kw">' + t + '</li>';
+function renderHomeData() {
+  const due = DATA.deadlines.filter(r => dday(r.due) >= 0).slice(0, 6);
+  document.getElementById('w-due').innerHTML = due.map(r =>
+    '<li><span class="t">' + esc(r.item) + ' <span class="kw">' + esc(r.target) + '</span></span><span class="r">' + esc(r.due.slice(5).replace('-', '.')) + '</span>' + ddBadge(dday(r.due)) + '</li>').join('') || emptyLi('다가오는 기한 없음');
+
+  const laws = DATA.laws.filter(r => r.status === '시행예정' && r.rev !== '타법개정').sort((a, b) => a.eff.localeCompare(b.eff)).slice(0, 6);
+  document.getElementById('w-laws').innerHTML = laws.map(r =>
+    '<li><span class="t">' + link(r.name, r.link) + '</span><span class="r">' + esc(r.eff) + '</span>' + ddBadge(dday(r.eff)) + '</li>').join('') || emptyLi('시행예정 법령 없음');
+
+  const seen = new Set();
+  const rul = Object.values(DATA.feed).flat().filter(r => r.rel === '상' && !seen.has(r.id) && seen.add(r.id))
+    .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
+  document.getElementById('w-rul').innerHTML = rul.map(r =>
+    '<li><span class="badge ' + (r.src === '조세심판원' ? 'b-soon' : 'ai') + '">' + esc(r.src === '조세심판원' ? '심판례' : '예규') + '</span>' +
+    '<span class="t" title="' + esc(r.summary || r.title) + '">' + link(r.title, r.link) + '</span><span class="r">' + esc(r.date) + '</span></li>').join('') || emptyLi('최근 관련도 상 건 없음');
+
+  renderHomeCal();
+}
+function renderHomeCal() {
+  const y = today.getFullYear(), m = today.getMonth();
+  const ym = y + '-' + String(m + 1).padStart(2, '0');
+  const byDay = {};
+  DATA.deadlines.filter(r => r.due.startsWith(ym)).forEach(r => (byDay[+r.due.slice(8)] = byDay[+r.due.slice(8)] || []).push(r.item));
+  document.getElementById('w-cal-t').textContent = (m + 1) + '월 기한';
+  let html = ['일', '월', '화', '수', '목', '금', '토'].map(d => '<div class="dw">' + d + '</div>').join('');
+  const first = new Date(y, m, 1).getDay(), last = new Date(y, m + 1, 0).getDate();
+  for (let i = 0; i < first; i++) html += '<div class="d out"></div>';
+  for (let d = 1; d <= last; d++) {
+    const cls = ['d'];
+    if (d === today.getDate()) cls.push('today');
+    if (byDay[d]) cls.push('has');
+    if ((first + d - 1) % 7 === 0) cls.push('sun');
+    html += '<div class="' + cls.join(' ') + '"' + (byDay[d] ? ' title="' + esc(byDay[d].join(', ')) + '"' : '') + '><b>' + d + '</b></div>';
+  }
+  document.getElementById('w-cal').innerHTML = html;
+  const n = Object.values(byDay).flat().length;
+  const next = DATA.deadlines.find(r => dday(r.due) >= 0);
+  document.getElementById('w-cal-n').textContent = '이번 달 기한 ' + n + '건' + (next ? ' · 다음: ' + next.item + ' (' + next.due.slice(5).replace('-', '.') + ')' : '');
+}
+function renderHomeImpact() {
+  const order = { '상': 0, '중': 1, '하': 2 };
+  const items = IMPACT.items.filter(x => x.level !== '하').sort((a, b) => order[a.level] - order[b.level]).slice(0, 6);
+  document.getElementById('w-imp').innerHTML = items.map(x =>
+    '<li><span class="badge r-' + esc(x.level) + '">영향 ' + esc(x.level) + '</span><span class="t"><a href="#impact">' + esc(x.title) + '</a></span><span class="r">' + esc(x.area) + '</span></li>').join('') || emptyLi('항목 없음');
+}
+function renderHomeXbrl() {
+  if (!XBRL) return;
+  const all = XBRL.groups.flatMap(g => g.items), done = all.filter(x => xbrlDone.has(x.id)).length;
+  const pct = n => Math.round(n * 100) + '%';
+  document.getElementById('w-xbrl').className = '';
+  document.getElementById('w-xbrl').innerHTML =
+    '<div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><b>전체</b><span>' + done + ' / ' + all.length + '</span></div>' +
+    '<div class="bar"><i style="width:' + pct(done / all.length) + '"></i></div>' +
+    '<div class="xg">' + XBRL.groups.map(g => {
+      const n = g.items.filter(x => xbrlDone.has(x.id)).length;
+      return '<span>' + esc(g.name) + '</span><span class="kw">' + n + '/' + g.items.length + '</span><div class="bar"><i style="width:' + pct(n / g.items.length) + '"></i></div>';
+    }).join('') + '</div><div class="kw" style="margin-top:4px">체크는 이 브라우저에만 저장</div>';
+}
+function initHomeAi() {
+  const ex = document.getElementById('w-ai-ex');
+  ex.innerHTML = AI_EXAMPLES.map((q, i) => '<button type="button" class="q" data-i="' + i + '">› ' + esc(q) + '</button>').join('');
+  const go = q => { if (!q.trim()) return; location.hash = '#ai'; askAi(q); };
+  ex.querySelectorAll('.q').forEach(b => b.onclick = () => go(AI_EXAMPLES[b.dataset.i]));
+  const qEl = document.getElementById('w-ai-q');
+  document.getElementById('w-ai').onsubmit = e => { e.preventDefault(); const q = qEl.value; qEl.value = ''; go(q); };
+}
+
 /* ---------- load ---------- */
+window.addEventListener('hashchange', showPage);
+showPage();
 initAi();
+initHomeAi();
 ['c-base', 'c-tmp'].forEach(id => document.getElementById(id).oninput = renderCalc);
 renderCalc();
 
 fetch('impact.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
-  IMPACT = d; renderImpact(); renderKpis();
+  IMPACT = d; renderImpact(); renderKpis(); renderHomeImpact();
 }).catch(e => {
   document.getElementById('cards').innerHTML = '<div class="err">impact.json을 불러오지 못했습니다 (' + esc(e.message) + ')</div>';
 });
@@ -524,7 +688,7 @@ fetch('data.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.stat
   document.getElementById('only-pending').onchange = renderLaws;
   document.getElementById('hide-other').onchange = renderLaws;
   document.getElementById('hide-low').onchange = () => { renderTabs(); renderFeed(); };
-  renderKpis(); renderLaws(); renderTabs(); renderFeed(); renderCal();
+  renderKpis(); renderLaws(); renderTabs(); renderFeed(); renderCal(); renderHomeData();
 }).catch(e => {
   document.getElementById('stamp').textContent = 'data.json을 불러오지 못했습니다 (' + e.message + ')';
 });
