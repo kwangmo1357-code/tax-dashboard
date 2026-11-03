@@ -17,14 +17,21 @@ const TEXT_LIMIT = 6000;   // 원문 1건당 Claude에 넘기는 글자 수
 const MAX_QUESTION = 1000;
 const MAX_HISTORY = 6;
 
-const SYSTEM = `너는 한국 중견 제조업 상장회사(K-IFRS, 12월 결산) 세무팀의 실무 보조 TAX AI다.
+const SYSTEM = `너는 한국 중견 제조업 상장회사(K-IFRS, 12월 결산) 세무·회계·법무팀의 실무 보조 TAX AI다.
+세법 질문과 상법·공시(이사회, 주주총회, 자기주식, 독립이사, 감사위원회, 배당 등) 질문에 답한다.
 질문에 답하기 전에 반드시 도구로 원문을 찾아 읽고, 읽은 원문만 근거로 답한다.
 
 진행 순서
 1. 관련 법령·조문을 정한다. 조문 번호를 모르면 search_law로 법령을 찾고, get_article로 조문 원문을 읽는다.
-   본법 조문에서 "대통령령으로 정하는" 부분이 핵심이면 시행령 조문도 읽는다.
-2. 실무 쟁점이 있으면 search_rulings로 국세청 해석례·조세심판원 재결례를 찾고, 쓸 만한 건은 get_ruling으로 본문을 읽는다.
+   본법 조문에서 "대통령령으로 정하는" 부분이 핵심이면 시행령 조문도 읽는다. 상법 질문이면 상법과 상법 시행령을 본다.
+2. 세법 실무 쟁점이면 search_rulings로 국세청 해석례·조세심판원 재결례를, 상법 쟁점이면 search_precedents로 법원 판례를 찾고,
+   쓸 만한 건은 get_ruling으로 본문을 읽는다.
 3. submit_answer 도구로 답을 제출한다. 답은 반드시 이 도구로만 낸다.
+
+상법·공시 질문 추가 원칙
+- 공시 의무(DART·KIND)는 원문에서 확인한 것만 쓰고, 거래소 공시규정처럼 도구로 읽을 수 없는 규정은 cautions에 "공시규정 원문 확인 필요"라고 쓴다.
+- 합병·분할·자기주식·신주 발행·특수관계인 거래처럼 주주 이익에 영향이 큰 안건은 cautions에 외부 법률 검토가 필요하다고 쓴다.
+- 답변은 법률 자문을 대체하지 않는다.
 
 답변 작성 원칙
 - steps: 실무자가 준비할 순서대로 3~6단계. 각 단계는 원문에서 확인한 요건·계산·사후관리를 쓴다.
@@ -73,11 +80,21 @@ const TOOLS = [
     },
   },
   {
-    name: "get_ruling",
-    description: "search_rulings 결과의 해석례·재결례 본문을 읽는다. 결과의 source_id를 답변 근거로 인용할 수 있다.",
+    name: "search_precedents",
+    description: "법원 판례를 키워드로 검색한다(상법·회사법 쟁점용). 결과의 id로 get_ruling을 호출해 본문을 읽는다.",
     input_schema: {
       type: "object",
-      properties: { id: { type: "string", description: "search_rulings 결과의 id. 예: nts-123, tt-456" } },
+      properties: { query: { type: "string", description: "짧은 키워드. 예: 자기주식 처분 무효, 이사 충실의무" } },
+      required: ["query"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "get_ruling",
+    description: "search_rulings·search_precedents 결과의 해석례·재결례·판례 본문을 읽는다. 결과의 source_id를 답변 근거로 인용할 수 있다.",
+    input_schema: {
+      type: "object",
+      properties: { id: { type: "string", description: "검색 결과의 id. 예: nts-123, tt-456, prec-789" } },
       required: ["id"],
       additionalProperties: false,
     },
@@ -214,7 +231,8 @@ function finalize(ctx, input, model) {
 
 async function runTool(ctx, block) {
   try {
-    const fn = { search_law: searchLaw, get_article: getArticle, search_rulings: searchRulings, get_ruling: getRuling }[block.name];
+    const fn = { search_law: searchLaw, get_article: getArticle, search_rulings: searchRulings, search_precedents: searchPrecedents,
+                 get_ruling: getRuling }[block.name];
     if (!fn) throw new Error("알 수 없는 도구: " + block.name);
     const out = await fn(ctx, block.input || {});
     return { type: "tool_result", tool_use_id: block.id, content: JSON.stringify(out) };
@@ -273,16 +291,31 @@ async function searchRulings(ctx, { query, source }) {
   return rows.map(({ id, type, date, no, title }) => ({ id, type, date, no, title }));
 }
 
+async function searchPrecedents(ctx, { query }) {
+  const d = await drf(ctx, "lawSearch.do", { target: "prec", query, display: 8, sort: "ddes" });
+  const rows = asList(d?.PrecSearch?.prec).map((x) => ({
+    id: "prec-" + x["판례일련번호"], type: "판례", date: x["선고일자"], no: [x["법원명"], x["사건번호"]].filter(Boolean).join(" "),
+    title: x["사건명"], link: precLink(x["판례일련번호"]),
+  }));
+  for (const r of rows) ctx.candidates.set(r.id, r);
+  return rows.map(({ id, type, date, no, title }) => ({ id, type, date, no, title }));
+}
+
+const RULING_TYPES = {
+  nts: { target: "ntsCgmExpc", type: "예규" },
+  tt: { target: "ttSpecialDecc", type: "심판례" },
+  prec: { target: "prec", type: "판례" },
+};
+
 async function getRuling(ctx, { id }) {
-  const m = String(id).match(/^(nts|tt)-(\d+)$/);
-  if (!m) throw new Error("id 형식: nts-123 또는 tt-456 (search_rulings 결과의 id)");
-  const target = m[1] === "nts" ? "ntsCgmExpc" : "ttSpecialDecc";
+  const m = String(id).match(/^(nts|tt|prec)-(\d+)$/);
+  if (!m) throw new Error("id 형식: nts-123, tt-456, prec-789 (검색 결과의 id)");
+  const { target, type } = RULING_TYPES[m[1]];
   const d = await drf(ctx, "lawService.do", { target, ID: m[2] });
   const text = collectText(ctx, d);
   if (!text) throw new Error("본문이 비어 있습니다");
   const c = ctx.candidates.get(id) || {};
-  const type = m[1] === "nts" ? "예규" : "심판례";
-  const link = c.link || (m[1] === "tt" ? tribunalLink(m[2]) : "");
+  const link = c.link || (m[1] === "tt" ? tribunalLink(m[2]) : m[1] === "prec" ? precLink(m[2]) : "");
   ctx.sources.set(id, { id, type, title: c.title || id, no: c.no || "", date: c.date || "", link });
   return { source_id: id, type, no: c.no, title: c.title, text };
 }
@@ -341,6 +374,7 @@ function publicLink(link) {
 }
 
 const tribunalLink = (id) => `https://www.law.go.kr/LSW/specialDeccInfoP.do?specialDeccSeq=${id}&trbClsCd=360101`;
+const precLink = (id) => `https://www.law.go.kr/LSW/precInfoP.do?precSeq=${id}`;
 
 function corsHeaders(request, env) {
   const origin = request.headers.get("Origin") || "";

@@ -157,6 +157,12 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 .chk .pg { flex: none; font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
 .tab.reset { margin-left: auto; }
 
+/* 상법·공시 */
+h3.sec { font-size: 14px; margin: 24px 0 8px; }
+.gov { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.gov .tbl h4 { font-size: 12.5px; margin: 0; padding: 8px 11px; background: var(--head); border-bottom: 1px solid var(--line); }
+@media (max-width: 960px) { .gov { grid-template-columns: minmax(0, 1fr); } }
+
 /* TAX AI */
 .ai-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px; }
 .ai-box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 11px 13px; }
@@ -196,6 +202,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     <a href="#ai">TAX AI</a>
     <a href="#home">홈</a>
     <a href="#laws">세법 개정</a>
+    <a href="#corp">상법·공시</a>
     <a href="#rulings">예규·판례</a>
     <a href="#impact">영향 분석</a>
     <a href="#deadlines">신고 기한</a>
@@ -211,13 +218,14 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
       <div class="wg"><div class="wg-h"><h3>다가오는 기한</h3><a href="#deadlines">전체 보기 ›</a></div><ul class="wl" id="w-due"><li class="kw">불러오는 중…</li></ul></div>
       <div class="wg"><div class="wg-h"><h3>시행예정 법령</h3><a href="#laws">전체 보기 ›</a></div><ul class="wl" id="w-laws"><li class="kw">불러오는 중…</li></ul></div>
       <div class="wg"><div class="wg-h"><h3>TAX AI 빠른 질문</h3><a href="#ai">TAX AI ›</a></div>
-        <form class="qa" id="w-ai"><textarea id="w-ai-q" maxlength="1000" placeholder="세법·공제·서식 질문을 입력하세요"></textarea>
+        <form class="qa" id="w-ai"><textarea id="w-ai-q" maxlength="1000" placeholder="세법·상법·공시 질문을 입력하세요"></textarea>
           <div id="w-ai-ex"></div><button type="submit" class="btn">질문하기</button></form></div>
       <div class="wg w2"><div class="wg-h"><h3>최근 예규·판례 <span class="kw">관련도 상</span></h3><a href="#rulings">전체 보기 ›</a></div><ul class="wl" id="w-rul"><li class="kw">불러오는 중…</li></ul></div>
       <div class="wg"><div class="wg-h"><h3 id="w-cal-t">이번 달 기한</h3><a href="#deadlines">전체 보기 ›</a></div><div class="cal" id="w-cal"></div><div class="cal-day" id="w-cal-day"></div><div class="kw" id="w-cal-n" style="margin-top:6px"></div></div>
       <div class="wg w2"><div class="wg-h"><h3>우리 회사 영향 큰 항목</h3><a href="#impact">전체 보기 ›</a></div><ul class="wl" id="w-imp"><li class="kw">불러오는 중…</li></ul></div>
       <div class="wg"><div class="wg-h"><h3>XBRL 점검 진행률</h3><a href="#xbrl">점검하기 ›</a></div><div id="w-xbrl" class="kw">불러오는 중…</div></div>
-      <div class="wg w3"><div class="wg-h"><h3>바로가기</h3></div>
+      <div class="wg"><div class="wg-h"><h3>개정 상법 시행 일정</h3><a href="#corp">상법·공시 ›</a></div><ul class="wl" id="w-corp"><li class="kw">불러오는 중…</li></ul></div>
+      <div class="wg w2"><div class="wg-h"><h3>바로가기</h3></div>
         <div class="links">
           <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스<span>신고·납부</span></a>
           <a href="https://www.wetax.go.kr" target="_blank" rel="noopener">위택스<span>지방세</span></a>
@@ -225,6 +233,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
           <a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터<span>법령 원문</span></a>
           <a href="https://taxlaw.nts.go.kr" target="_blank" rel="noopener">국세법령정보시스템<span>예규·해석</span></a>
           <a href="https://www.tt.go.kr" target="_blank" rel="noopener">조세심판원<span>심판 결정</span></a>
+          <a href="https://kind.krx.co.kr" target="_blank" rel="noopener">KIND<span>거래소 공시</span></a>
         </div></div>
     </div>
   </section>
@@ -262,6 +271,40 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
     </table></div>
   </section>
 
+  <section class="page" id="p-corp">
+    <h2>상법·공시 리스크</h2>
+    <p class="note" id="corp-note">불러오는 중…</p>
+
+    <h3 class="sec">개정 상법 시행 일정</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>시행일</th><th class="num">D-day</th><th style="width:22%">개정 내용</th><th>조문</th><th>적용 대상</th><th>근거</th><th style="width:34%">비고</th></tr></thead>
+      <tbody id="corp-amd"><tr><td colspan="7" class="loading">불러오는 중…</td></tr></tbody>
+    </table></div>
+
+    <h3 class="sec">상법·시행령 개정 현황 <span class="kw">법제처 매일 자동 수집</span></h3>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:24%">법령명</th><th>제·개정</th><th>공포일</th><th>시행일</th><th class="num">D-day</th><th>상태</th></tr></thead>
+      <tbody id="corp-law"><tr><td colspan="6" class="loading">불러오는 중…</td></tr></tbody>
+    </table></div>
+
+    <h3 class="sec">이사회·주주총회 연간 일정 <span class="kw">12월 결산 상장회사 일반</span></h3>
+    <div class="tbl"><table>
+      <thead><tr><th>시기</th><th>회의</th><th style="width:18%">안건</th><th>상법 조문</th><th style="width:24%">공시 의무 (DART·KIND)</th><th style="width:24%">유의</th></tr></thead>
+      <tbody id="corp-cal"></tbody>
+    </table></div>
+
+    <h3 class="sec">이사회 안건별 리스크</h3>
+    <p class="note" id="corp-risk-note"></p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:18%">안건</th><th style="width:30%">주주가 문제 삼을 수 있는 부분</th><th>리스크</th><th>필요 조치</th></tr></thead>
+      <tbody id="corp-risk"></tbody>
+    </table></div>
+
+    <h3 class="sec">지배구조 핵심지표 15개 <span class="kw" id="gov-count"></span></h3>
+    <p class="note" id="gov-note"></p>
+    <div class="gov" id="gov"></div>
+  </section>
+
   <section class="page" id="p-rulings">
     <h2>실무 주제별 예규·판례 <span class="badge ai">AI 분석</span></h2>
     <p class="note">국세청 법령해석 + 조세심판원 재결례, 최근 3년 · 개인·특수업종(양도세·주택·금융업 등) 건은 제외 · <b>관련도</b>는 중견 제조 상장사 기준(키워드 규칙 → AI 판정 시 덮어씀) · AI 요약은 제목·재결요지만 보고 작성한 참고용이니 원문을 확인하세요.</p>
@@ -295,7 +338,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 
   <section class="page" id="p-ai">
     <h2>TAX AI <span class="badge ai">AI 분석</span></h2>
-    <p class="note">질문하면 법제처 원문(조문·국세청 해석례·조세심판원 재결례)을 먼저 찾아 읽고, 그 원문만 근거로 절차·서식·근거를 답합니다 · 원문 근거가 없으면 답하지 않습니다 · 답변은 검토 보조용이며 최종 판단은 세무 담당자·세무대리인이 확인하세요 · 회사 내부 자료는 입력하지 마세요</p>
+    <p class="note">질문하면 법제처 원문(세법·상법 조문, 국세청 해석례, 조세심판원 재결례, 법원 판례)을 먼저 찾아 읽고, 그 원문만 근거로 절차·서식·근거를 답합니다 · 원문 근거가 없으면 답하지 않습니다 · 답변은 검토 보조용이며 최종 판단은 세무 담당자·세무대리인이 확인하세요 · 회사 내부 자료는 입력하지 마세요</p>
     <div class="ai-grid">
       <div class="ai-box">
         <div class="ai-code" id="ai-code"></div>
@@ -326,6 +369,7 @@ const today = new Date(); today.setHours(0,0,0,0);
 const dday = s => { if (!s) return null; const d = new Date(s + 'T00:00:00'); return Math.round((d - today) / 86400000); };
 const ddLabel = n => n == null ? '' : (n === 0 ? 'D-DAY' : n > 0 ? 'D-' + n : 'D+' + (-n));
 const link = (txt, href) => href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + esc(txt) + '</a>' : esc(txt);
+const isCorp = r => /^상법/.test(r.name || '');   // 상법·시행령은 상법·공시 탭에서 표시
 const relBadge = r => '<span class="badge r-' + esc(r || '하') + '">' + esc(r || '하') + '</span>';
 
 let DATA = null, IMPACT = null, current = null, impLevel = store.get('dash_imp') || '상·중';
@@ -334,7 +378,7 @@ let DATA = null, IMPACT = null, current = null, impLevel = store.get('dash_imp')
 function renderKpis() {
   const k = [];
   if (DATA) {
-    const pending = DATA.laws.filter(r => r.status === '시행예정' && r.rev !== '타법개정');
+    const pending = DATA.laws.filter(r => !isCorp(r) && r.status === '시행예정' && r.rev !== '타법개정');
     const nextLaw = pending.slice().sort((a,b) => a.eff.localeCompare(b.eff))[0];
     const nextDue = DATA.deadlines.find(r => dday(r.due) >= 0);
     const hi = new Set(Object.values(DATA.feed).flat().filter(r => r.rel === '상' && dday(r.date) >= -90).map(r => r.id)).size;
@@ -415,7 +459,7 @@ function renderImpact() {
 function renderLaws() {
   const only = document.getElementById('only-pending').checked;
   const hideOther = document.getElementById('hide-other').checked;
-  const rows = DATA.laws.filter(r => (!only || r.status === '시행예정') && (!hideOther || r.rev !== '타법개정'));
+  const rows = DATA.laws.filter(r => !isCorp(r) && (!only || r.status === '시행예정') && (!hideOther || r.rev !== '타법개정'));
   document.getElementById('law-body').innerHTML = rows.length ? rows.map(r => {
     const n = dday(r.eff);
     const badge = r.status === '조회실패' ? '<span class="badge b-warn">조회실패</span>'
@@ -503,7 +547,8 @@ function renderXbrl() {
 const AI_EXAMPLES = [
   '올해 신규 설비 투자분으로 통합투자세액공제를 받으려면 무엇을 준비하나요?',
   '연구전담부서 연구원이 다른 업무를 겸하면 연구·인력개발비 세액공제 인건비는 어떻게 되나요?',
-  '기업업무추진비 한도초과액 계산 절차를 알려주세요'
+  '기업업무추진비 한도초과액 계산 절차를 알려주세요',
+  '자기주식을 우호 주주에게 처분해도 되나요? (상법)'
 ];
 let aiUrl = '', aiBusy = false;
 const aiHistory = [];
@@ -584,8 +629,70 @@ function initAi() {
   });
 }
 
+/* ---------- 상법·공시 ---------- */
+// 일반 원칙만 공개. 지배구조 핵심지표 체크는 이 브라우저에만 저장
+let CORP = null;
+const govDone = new Set((store.get('dash_gov_done') || '').split(',').filter(Boolean));
+// "제449조의2 · 제462조" → 조문마다 국가법령정보센터 링크
+const artLinks = s => String(s || '').split(' · ').map(a => {
+  const m = a.match(/^제\d+조(의\d+)?/);
+  return m ? '<a href="https://www.law.go.kr/법령/상법/' + encodeURIComponent(m[0]) + '" target="_blank" rel="noopener">' + esc(a) + '</a>' : esc(a);
+}).join(' · ');
+const riskCls = { '높음': 'r-상', '중간': 'r-중', '낮음': 'r-하' };
+const basisBadge = b => '<span class="badge ' + (b === '확인' ? 'b-now' : 'b-warn') + '">' + esc(b) + '</span>';
+function renderCorp() {
+  if (!CORP) return;
+  document.getElementById('corp-note').innerHTML = esc(CORP.profile) + ' · 근거 표시: ' +
+    Object.entries(CORP.basisLabels).map(([k, v]) => '<b>' + esc(k) + '</b> ' + esc(v)).join(' · ');
+  document.getElementById('corp-amd').innerHTML = CORP.amendments.map(r => {
+    const n = dday(r.eff);
+    return '<tr><td class="date">' + esc(r.eff) + '</td><td class="num">' + (n > 0 ? ddBadge(n) : '<span class="badge b-now">시행</span>') + '</td>' +
+      '<td>' + esc(r.title) + '</td><td>' + artLinks(r.article) + '</td><td>' + esc(r.target) + '</td><td>' + basisBadge(r.basis) + '</td>' +
+      '<td class="focus">' + esc(r.note) + '</td></tr>';
+  }).join('');
+  document.getElementById('corp-cal').innerHTML = CORP.calendar.map(r =>
+    '<tr><td>' + esc(r.when) + '</td><td>' + esc(r.meeting) + '</td><td>' + esc(r.agenda) + '</td><td>' + artLinks(r.article) + '</td>' +
+    '<td>' + esc(r.duty) + '</td><td class="focus">' + esc(r.tip) + '</td></tr>').join('');
+  document.getElementById('corp-risk-note').textContent = CORP.riskNote;
+  document.getElementById('corp-risk').innerHTML = CORP.risks.map(r =>
+    '<tr><td>' + esc(r.agenda) + '</td><td>' + esc(r.issue) + '</td><td><span class="badge ' + (riskCls[r.level] || 'b-mute') + '">' + esc(r.level) + '</span></td>' +
+    '<td>' + esc(r.action) + '</td></tr>').join('');
+  renderGov();
+  renderHomeCorp();
+}
+function renderGov() {
+  const all = CORP.governance.flatMap(g => g.items);
+  document.getElementById('gov-count').textContent = '점검 ' + all.filter(x => govDone.has(x.id)).length + '/' + all.length;
+  document.getElementById('gov-note').textContent = CORP.governanceNote + ' · 체크는 이 브라우저에만 저장';
+  const el = document.getElementById('gov');
+  el.innerHTML = CORP.governance.map(g => '<div class="tbl"><h4>' + esc(g.group) + '</h4><ul class="chk">' + g.items.map(x => {
+    const on = govDone.has(x.id);
+    return '<li' + (on ? ' class="done"' : '') + '><input type="checkbox" id="gv-' + esc(x.id) + '" data-id="' + esc(x.id) + '"' + (on ? ' checked' : '') + '>' +
+      '<label for="gv-' + esc(x.id) + '">' + esc(x.text) + '</label></li>';
+  }).join('') + '</ul></div>').join('');
+  el.querySelectorAll('input').forEach(c => c.onchange = () => {
+    if (c.checked) govDone.add(c.dataset.id); else govDone.delete(c.dataset.id);
+    store.set('dash_gov_done', [...govDone].join(',')); renderGov();
+  });
+}
+function renderCorpLaws() {
+  const rows = DATA.laws.filter(r => isCorp(r) && r.rev !== '타법개정');
+  document.getElementById('corp-law').innerHTML = rows.length ? rows.map(r => {
+    const badge = r.status === '조회실패' ? '<span class="badge b-warn">조회실패</span>'
+      : r.status === '시행예정' ? '<span class="badge b-future">시행예정</span>' : '<span class="badge b-now">현행</span>';
+    return '<tr><td>' + link(r.name, r.link) + '<div class="kw">' + esc(r.kind) + '</div></td><td>' + esc(r.rev || '') + '</td>' +
+      '<td class="date">' + esc(r.pub) + '</td><td class="date">' + esc(r.eff) + '</td><td class="num">' + (r.status === '시행예정' ? ddLabel(dday(r.eff)) : '') + '</td><td>' + badge + '</td></tr>';
+  }).join('') : '<tr><td colspan="6" class="kw">다음 자동 갱신(매일 06:47) 때부터 상법·시행령 개정이 수집됩니다</td></tr>';
+}
+function renderHomeCorp() {
+  const up = CORP.amendments.filter(r => dday(r.eff) > 0).slice(0, 5);
+  document.getElementById('w-corp').innerHTML = up.map(r =>
+    '<li><span class="t"><a href="#corp">' + esc(r.title) + '</a> <span class="kw">' + esc(r.target) + '</span></span><span class="r">' + esc(r.eff.slice(0, 7).replace('-', '.')) + '</span>' + ddBadge(dday(r.eff)) + '</li>').join('')
+    || emptyLi('시행예정 항목 없음');
+}
+
 /* ---------- 메뉴 이동 (주소 끝 #이름으로 화면 전환) ---------- */
-const PAGES = ['home', 'laws', 'rulings', 'impact', 'deadlines', 'xbrl', 'ai'];
+const PAGES = ['home', 'laws', 'corp', 'rulings', 'impact', 'deadlines', 'xbrl', 'ai'];
 function showPage() {
   const p = location.hash.slice(1);
   const page = PAGES.includes(p) ? p : 'home';
@@ -602,7 +709,7 @@ function renderHomeData() {
   document.getElementById('w-due').innerHTML = due.map(r =>
     '<li><span class="t">' + esc(r.item) + ' <span class="kw">' + esc(r.target) + '</span></span><span class="r">' + esc(r.due.slice(5).replace('-', '.')) + '</span>' + ddBadge(dday(r.due)) + '</li>').join('') || emptyLi('다가오는 기한 없음');
 
-  const laws = DATA.laws.filter(r => r.status === '시행예정' && r.rev !== '타법개정').sort((a, b) => a.eff.localeCompare(b.eff)).slice(0, 6);
+  const laws = DATA.laws.filter(r => !isCorp(r) && r.status === '시행예정' && r.rev !== '타법개정').sort((a, b) => a.eff.localeCompare(b.eff)).slice(0, 6);
   document.getElementById('w-laws').innerHTML = laws.map(r =>
     '<li><span class="t">' + link(r.name, r.link) + '</span><span class="r">' + esc(r.eff) + '</span>' + ddBadge(dday(r.eff)) + '</li>').join('') || emptyLi('시행예정 법령 없음');
 
@@ -699,6 +806,12 @@ fetch('xbrl.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.stat
   document.getElementById('xbrl-list').innerHTML = '<li class="err">xbrl.json을 불러오지 못했습니다 (' + esc(e.message) + ')</li>';
 });
 
+fetch('corp.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+  CORP = d; renderCorp();
+}).catch(e => {
+  document.getElementById('corp-amd').innerHTML = '<tr><td colspan="7" class="err">corp.json을 불러오지 못했습니다 (' + esc(e.message) + ')</td></tr>';
+});
+
 fetch('data.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
   DATA = d;
   const saved = store.get('dash_topic');
@@ -708,7 +821,7 @@ fetch('data.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.stat
   document.getElementById('only-pending').onchange = renderLaws;
   document.getElementById('hide-other').onchange = renderLaws;
   document.getElementById('hide-low').onchange = () => { renderTabs(); renderFeed(); };
-  renderKpis(); renderLaws(); renderTabs(); renderFeed(); renderCal(); renderHomeData();
+  renderKpis(); renderLaws(); renderTabs(); renderFeed(); renderCal(); renderHomeData(); renderCorpLaws();
 }).catch(e => {
   document.getElementById('stamp').textContent = 'data.json을 불러오지 못했습니다 (' + e.message + ')';
 });

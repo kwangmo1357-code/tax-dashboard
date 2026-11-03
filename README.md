@@ -67,6 +67,7 @@ GitHub Pages는 화면만 보여주므로, 질문이 올 때마다 API 키로 Cl
 | 제외어 / 제조업 관련도 키워드 | `update_data.py` → `EXCLUDE` / `MFG_KEYS` |
 | 영향 분석 카드 | `site/impact.json` → `items` (`basis`: 확인 / 확인 필요 / 분석) |
 | XBRL 주석 작성 점검 | `site/xbrl.json` → `rules`(핵심 기준) / `groups[].items`(체크리스트, `id`는 바꾸지 말 것 — 체크 상태가 id로 저장됨, `page`는 가이드 본문 쪽수) |
+| 상법·공시 탭 | `site/corp.json` → `amendments`(개정 상법 일정, `basis`: 확인 / 확인 필요) · `calendar`(이사회·주총 일반 일정) · `risks`(안건 리스크) · `governance`(핵심지표 15개, `id`는 바꾸지 말 것). 상법·시행령 개정 현황은 `update_data.py` → `LAW_FOCUS`의 "상법"으로 자동 수집 |
 | 화면만 다시 확인 (API 호출 없이 재분류) | `python scripts/update_data.py --offline` |
 | 실행 시각 | `update.yml` → `cron` (UTC 기준, KST −9시간) |
 | 요약 문구 스타일 | `update_data.py` → `claude_summarize()`의 prompt |
