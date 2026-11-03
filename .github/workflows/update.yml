@@ -45,7 +45,8 @@ jobs:
       - name: 챗봇 서버 주소 기록 (저장소 Variables의 TAX_AI_URL)
         env:
           TAX_AI_URL: ${{ vars.TAX_AI_URL }}
-        run: python -c "import json,os; json.dump({'taxAiUrl': os.environ.get('TAX_AI_URL','')}, open('site/config.json','w'))"
+        run: |
+          python -c "import json,os; json.dump({'taxAiUrl': os.environ.get('TAX_AI_URL','')}, open('site/config.json','w'))"
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
