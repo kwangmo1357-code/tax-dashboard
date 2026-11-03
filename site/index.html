@@ -33,7 +33,7 @@ body { margin: 0; background: var(--bg); color: var(--text);
 .wrap { max-width: 1240px; margin: 0 auto; padding: 20px 16px 40px; }
 
 /* 상단 메뉴 */
-.top { background: var(--brand); color: var(--on-brand); position: sticky; top: 0; z-index: 10; }
+.topbar { background: var(--brand); color: var(--on-brand); position: sticky; top: 0; z-index: 10; }
 .top-in { max-width: 1240px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 14px; min-height: 46px; }
 .logo { color: var(--on-brand); font-weight: 700; font-size: 15px; white-space: nowrap; }
 .logo:hover { text-decoration: none; }
@@ -71,10 +71,15 @@ body { margin: 0; background: var(--bg); color: var(--text);
 .links a:hover { text-decoration: none; background: var(--ai-bg); color: var(--ai); }
 .cal { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11.5px; gap: 2px 0; }
 .cal .dw { color: var(--faint); padding-bottom: 3px; }
-.cal .d { padding: 3px 0; position: relative; font-variant-numeric: tabular-nums; }
-.cal .d.today b { background: var(--alert); color: #fff; border-radius: 50%; display: inline-block; width: 21px; line-height: 21px; }
-.cal .d.has::after { content: ""; position: absolute; left: 50%; bottom: -1px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--alert); }
-.cal .d.sun { color: var(--warn); } .cal .d.out { visibility: hidden; }
+.cal .d { padding: 2px 0 4px; position: relative; font: inherit; font-variant-numeric: tabular-nums; color: var(--text); background: none; border: none; cursor: pointer; }
+.cal .d b { display: inline-block; width: 23px; line-height: 23px; border-radius: 50%; }
+.cal .d:hover b { background: var(--head); }
+.cal .d.today b { background: var(--alert); color: #fff; }
+.cal .d.sel b { box-shadow: 0 0 0 2px var(--brand-dk); }
+.cal .d.has::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--alert); }
+.cal .d.sun { color: var(--warn); } .cal .d.out { visibility: hidden; cursor: default; }
+.cal-day { margin-top: 8px; border-top: 1px solid var(--line2); padding-top: 7px; }
+.cal-day .h { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
 @media (max-width: 960px) { .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wg.w3 { grid-column: span 2; } }
 @media (max-width: 640px) { .home-grid { grid-template-columns: minmax(0, 1fr); } .wg.w2, .wg.w3 { grid-column: auto; } .stamp { display: none; } }
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-bottom: 14px; }
@@ -185,16 +190,16 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
 </style>
 </head>
 <body>
-<header class="top"><div class="top-in">
+<header class="topbar"><div class="top-in">
   <a class="logo" href="#home">세무·회계 포털</a>
   <nav class="nav" id="nav">
+    <a href="#ai">TAX AI</a>
     <a href="#home">홈</a>
     <a href="#laws">세법 개정</a>
     <a href="#rulings">예규·판례</a>
     <a href="#impact">영향 분석</a>
     <a href="#deadlines">신고 기한</a>
     <a href="#xbrl">XBRL 점검</a>
-    <a href="#ai">TAX AI</a>
   </nav>
   <span class="stamp" id="stamp">불러오는 중…</span>
 </div></header>
@@ -209,7 +214,7 @@ a { color: var(--link); text-decoration: none; } a:hover { text-decoration: unde
         <form class="qa" id="w-ai"><textarea id="w-ai-q" maxlength="1000" placeholder="세법·공제·서식 질문을 입력하세요"></textarea>
           <div id="w-ai-ex"></div><button type="submit" class="btn">질문하기</button></form></div>
       <div class="wg w2"><div class="wg-h"><h3>최근 예규·판례 <span class="kw">관련도 상</span></h3><a href="#rulings">전체 보기 ›</a></div><ul class="wl" id="w-rul"><li class="kw">불러오는 중…</li></ul></div>
-      <div class="wg"><div class="wg-h"><h3 id="w-cal-t">이번 달 기한</h3><a href="#deadlines">전체 보기 ›</a></div><div class="cal" id="w-cal"></div><div class="kw" id="w-cal-n" style="margin-top:8px"></div></div>
+      <div class="wg"><div class="wg-h"><h3 id="w-cal-t">이번 달 기한</h3><a href="#deadlines">전체 보기 ›</a></div><div class="cal" id="w-cal"></div><div class="cal-day" id="w-cal-day"></div><div class="kw" id="w-cal-n" style="margin-top:6px"></div></div>
       <div class="wg w2"><div class="wg-h"><h3>우리 회사 영향 큰 항목</h3><a href="#impact">전체 보기 ›</a></div><ul class="wl" id="w-imp"><li class="kw">불러오는 중…</li></ul></div>
       <div class="wg"><div class="wg-h"><h3>XBRL 점검 진행률</h3><a href="#xbrl">점검하기 ›</a></div><div id="w-xbrl" class="kw">불러오는 중…</div></div>
       <div class="wg w3"><div class="wg-h"><h3>바로가기</h3></div>
@@ -610,23 +615,38 @@ function renderHomeData() {
 
   renderHomeCal();
 }
+// 날짜를 누르면 그날 기한을 달력 아래에 표시 (처음에는 이번 달의 가장 가까운 기한일)
+let calSel = null;
 function renderHomeCal() {
   const y = today.getFullYear(), m = today.getMonth();
   const ym = y + '-' + String(m + 1).padStart(2, '0');
   const byDay = {};
-  DATA.deadlines.filter(r => r.due.startsWith(ym)).forEach(r => (byDay[+r.due.slice(8)] = byDay[+r.due.slice(8)] || []).push(r.item));
+  DATA.deadlines.filter(r => r.due.startsWith(ym)).forEach(r => (byDay[+r.due.slice(8)] = byDay[+r.due.slice(8)] || []).push(r));
+  if (calSel == null) {
+    const upcoming = Object.keys(byDay).map(Number).filter(d => d >= today.getDate()).sort((a, b) => a - b);
+    calSel = byDay[today.getDate()] ? today.getDate() : (upcoming[0] || today.getDate());
+  }
   document.getElementById('w-cal-t').textContent = (m + 1) + '월 기한';
   let html = ['일', '월', '화', '수', '목', '금', '토'].map(d => '<div class="dw">' + d + '</div>').join('');
   const first = new Date(y, m, 1).getDay(), last = new Date(y, m + 1, 0).getDate();
-  for (let i = 0; i < first; i++) html += '<div class="d out"></div>';
+  for (let i = 0; i < first; i++) html += '<span class="d out"></span>';
   for (let d = 1; d <= last; d++) {
     const cls = ['d'];
     if (d === today.getDate()) cls.push('today');
+    if (d === calSel) cls.push('sel');
     if (byDay[d]) cls.push('has');
     if ((first + d - 1) % 7 === 0) cls.push('sun');
-    html += '<div class="' + cls.join(' ') + '"' + (byDay[d] ? ' title="' + esc(byDay[d].join(', ')) + '"' : '') + '><b>' + d + '</b></div>';
+    html += '<button type="button" class="' + cls.join(' ') + '" data-d="' + d + '" aria-label="' + (m + 1) + '월 ' + d + '일' + (byDay[d] ? ' 기한 ' + byDay[d].length + '건' : '') + '"><b>' + d + '</b></button>';
   }
-  document.getElementById('w-cal').innerHTML = html;
+  const cal = document.getElementById('w-cal');
+  cal.innerHTML = html;
+  cal.querySelectorAll('button.d').forEach(b => b.onclick = () => { calSel = +b.dataset.d; renderHomeCal(); });
+
+  const wd = ['일', '월', '화', '수', '목', '금', '토'][new Date(y, m, calSel).getDay()];
+  const rows = byDay[calSel] || [];
+  document.getElementById('w-cal-day').innerHTML = '<div class="h">' + (m + 1) + '월 ' + calSel + '일 (' + wd + ')</div>' +
+    (rows.length ? '<ul class="wl">' + rows.map(r => '<li><span class="t">' + esc(r.item) + ' <span class="kw">' + esc(r.target) + '</span></span>' +
+      ddBadge(dday(r.due)) + '</li>').join('') + '</ul>' : '<div class="kw">이 날은 기한이 없습니다</div>');
   const n = Object.values(byDay).flat().length;
   const next = DATA.deadlines.find(r => dday(r.due) >= 0);
   document.getElementById('w-cal-n').textContent = '이번 달 기한 ' + n + '건' + (next ? ' · 다음: ' + next.item + ' (' + next.due.slice(5).replace('-', '.') + ')' : '');
